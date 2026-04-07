@@ -1,0 +1,74 @@
+[
+  {
+    "id": "arjun-sharma",
+    "name": "Arjun Sharma",
+    "email": "arnav.goyal_ug2023@ashoka.edu.in",
+    "image": "https://api.dicebear.com/8.x/avataaars/svg?seed=arjun&backgroundColor=b6e3f4",
+    "bio": "CFA Level I candidate. Deep value investing with a contrarian edge. Loves finding asymmetric risk-reward setups in beaten-down sectors.",
+    "presidentMemory": "Arjun, from day one you've been the quiet anchor of this club. The way you dissected Zomato's unit economics when everyone was chasing the hype — four pages of margin analysis at 2am — that's the kind of conviction that makes a great analyst. You don't follow the herd; you wait for the herd to pass, then move. Your intellectual honesty in the face of a bad trade is something I genuinely admire, and I know it's going to make you exceptional in this field.",
+    "favMemory": "Watching you defend your bear case on Paytm against five people who owned it — and being right.",
+    "pastPitch": {
+      "ticker": "HDFCBANK.NS",
+      "date": "2024-09-01"
+    },
+    "nextPitch": {
+      "ticker": "BAJFINANCE.NS",
+      "thesis": "NBFC resilience cycle play — credit costs have peaked, growth re-rating incoming."
+    },
+    "pitchPdfUrl": ""
+  },
+  {
+    "id": "priya-mehta",
+    "name": "Priya Mehta",
+    "email": "arnavgoyal63774@gmail.com",
+    "image": "https://api.dicebear.com/8.x/avataaars/svg?seed=priya&backgroundColor=ffd5dc",
+    "bio": "Macro-first investor with a love for global market linkages. Tracks RBI policy cycles obsessively and trades Indian equities through a macro lens.",
+    "presidentMemory": "Priya, you single-handedly elevated the intellectual bar of every room you walked into. I still think about your presentation on the RBI's policy transmission lag — the way you connected USD/INR moves to FMCG margin compression was genuinely original. You have a rare ability to simplify complexity without losing nuance. The club is sharper because you're in it, and any firm that hires you is going to wonder how they managed without you.",
+    "favMemory": "The late-night session where you predicted the rate pause before the MPC announcement — spot on.",
+    "pastPitch": {
+      "ticker": "RELIANCE.NS",
+      "date": "2024-10-15"
+    },
+    "nextPitch": {
+      "ticker": "SUNPHARMA.NS",
+      "thesis": "US generics recovery + India branded pharma growth = underappreciated multi-year compounder."
+    },
+    "pitchPdfUrl": ""
+  },
+  {
+    "id": "rohan-kapoor",
+    "name": "Rohan Kapoor",
+    "email": "rohan@bodhicapital.in",
+    "image": "https://api.dicebear.com/8.x/avataaars/svg?seed=rohan&backgroundColor=c0aede",
+    "bio": "Tech-sector specialist. Believes in network effects and moats above all else. Reads S-1 filings for fun.",
+    "presidentMemory": "Rohan, your pitch on Tata Elxsi was one of the cleanest pieces of research this club has ever seen — TAM sizing, competitive moat, and management quality all woven together in under 10 slides. You have an engineer's precision but an investor's instinct. I've seen you grow from someone who asked 'what's a DCF?' to someone who tears apart management commentary line by line. That journey is something I'm genuinely proud to have been part of.",
+    "favMemory": "The 'this company has no moat' interruption during someone else's pitch — polite, surgical, and devastatingly correct.",
+    "pastPitch": {
+      "ticker": "INFY.NS",
+      "date": "2024-11-01"
+    },
+    "nextPitch": {
+      "ticker": "LTIM.NS",
+      "thesis": "LTIMindtree's BFSI vertical inflection — deal wins accelerating into a tight talent market."
+    },
+    "pitchPdfUrl": ""
+  },
+  {
+    "id": "sneha-iyer",
+    "name": "Sneha Iyer",
+    "email": "sneha@bodhicapital.in",
+    "image": "https://api.dicebear.com/8.x/avataaars/svg?seed=sneha&backgroundColor=d1f7c4",
+    "bio": "Consumer and retail sector maven. Tracks footfall data, credit card spending, and GST collections to call inflection points before consensus.",
+    "presidentMemory": "Sneha, you have a gift that can't be taught — you see things in data that others walk right past. Your channel-check framework for Avenue Supermarts was something a sell-side analyst would charge for. You're also the person who always asks the 'so what?' question at the end of every analysis, which forces everyone in the room to sharpen their thinking. BODHI is better because you push us to go one level deeper, always.",
+    "favMemory": "You calling the festive season spending boom two months early based on just credit card data and Rapido bookings.",
+    "pastPitch": {
+      "ticker": "DMART.NS",
+      "date": "2024-08-15"
+    },
+    "nextPitch": {
+      "ticker": "TRENT.NS",
+      "thesis": "Zudio store rollout cadence — Trent is quietly building the H&M of India at 3x the pace of any peer."
+    },
+    "pitchPdfUrl": ""
+  }
+]

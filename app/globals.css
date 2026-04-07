@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+
+  /* AIC Green palette */
+  --color-aic-50: #f0fdf4;
+  --color-aic-100: #dcfce7;
+  --color-aic-200: #bbf7d0;
+  --color-aic-300: #86efac;
+  --color-aic-400: #4ade80;
+  --color-aic-500: #22c55e;
+  --color-aic-600: #16a34a;
+  --color-aic-700: #15803d;
+  --color-aic-800: #166534;
+  --color-aic-900: #14532d;
+
+  /* Muted/negative tone — teal complement (NOT red) */
+  --color-muted-50: #f0fdfa;
+  --color-muted-100: #ccfbf1;
+  --color-muted-400: #2dd4bf;
+  --color-muted-500: #14b8a6;
+  --color-muted-600: #0d9488;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-geist-sans, 'Inter', Arial, sans-serif);
+  -webkit-font-smoothing: antialiased;
 }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #f8fafc; }
+::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #16a34a; }
