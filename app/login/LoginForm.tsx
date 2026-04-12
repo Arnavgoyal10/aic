@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import members from "@/data/members.json";
-import { TrendingUp, Lock, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { TrendingUp, Lock, Eye, EyeOff, AlertCircle, CheckCircle2 } from "lucide-react";
 
 function setCookie(name: string, value: string, days = 7) {
   if (typeof document !== "undefined") {
@@ -22,6 +22,25 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
+
+  const handleForgotPassword = async () => {
+    if (!email.trim()) {
+      setError("Enter your email above first, then click Forgot Password.");
+      return;
+    }
+    setResetLoading(true);
+    setError("");
+    try {
+      await sendPasswordResetEmail(auth, email.trim());
+      setResetSent(true);
+    } catch {
+      setError("Could not send reset email. Make sure your email is registered.");
+    } finally {
+      setResetLoading(false);
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -152,6 +171,15 @@ export default function LoginForm() {
               </div>
             )}
 
+            {resetSent && (
+              <div className="flex items-start gap-2.5 p-3 rounded-lg bg-[#f0fdf4] border border-[#bbf7d0]">
+                <CheckCircle2 className="w-4 h-4 text-[#16a34a] mt-0.5 shrink-0" />
+                <p className="text-xs text-[#15803d]">
+                  Reset email sent to <strong>{email}</strong>. Check your inbox.
+                </p>
+              </div>
+            )}
+
             <button
               type="submit"
               disabled={loading}
@@ -181,6 +209,17 @@ export default function LoginForm() {
               )}
             </button>
           </form>
+
+          <div className="mt-4 text-center">
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              disabled={resetLoading}
+              className="text-xs text-slate-400 hover:text-[#16a34a] transition-colors disabled:opacity-50"
+            >
+              {resetLoading ? "Sending…" : "Forgot password?"}
+            </button>
+          </div>
         </div>
 
         <p className="text-center text-xs text-slate-300 mt-6">

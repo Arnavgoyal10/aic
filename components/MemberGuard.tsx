@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/AuthContext";
-import members from "@/data/members.json";
 
 interface MemberGuardProps {
   memberId: string;
@@ -23,10 +22,7 @@ export default function MemberGuard({ memberId, children }: MemberGuardProps) {
       return;
     }
 
-    // If they're logged in but not mapped to any member, send to first member
-    if (!myMemberId && !loading) {
-      router.replace(`/${members[0].id}`);
-    }
+    // Unmapped email — let them view the page they landed on (no restriction)
   }, [myMemberId, memberId, loading, router]);
 
   // While redirecting, show nothing (no flash of other member's data)

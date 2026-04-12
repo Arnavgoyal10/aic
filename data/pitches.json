@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ceinsys",
+    "company": "Ceinsys Tech",
+    "ticker": "CEINSYS.NS",
+    "date": "2025-08-01",
+    "pdf": "Ceinsys.pdf",
+    "batch": "aug2025"
+  },
+  {
+    "id": "entero",
+    "company": "Entero Healthcare",
+    "ticker": "ENTERO.NS",
+    "date": "2025-08-01",
+    "pdf": "Entero Healthcare.pdf",
+    "batch": "aug2025"
+  },
+  {
+    "id": "indegene",
+    "company": "Indegene",
+    "ticker": "INDGN.NS",
+    "date": "2025-08-01",
+    "pdf": "Indegene.pdf",
+    "batch": "aug2025"
+  },
+  {
+    "id": "tips",
+    "company": "TIPS Industries",
+    "ticker": "TIPSMUSIC.NS",
+    "date": "2025-08-01",
+    "pdf": "Tips final.pdf",
+    "batch": "aug2025"
+  },
+  {
+    "id": "oriana",
+    "company": "Oriana Power",
+    "ticker": "ORIANA.NS",
+    "date": "2025-08-01",
+    "pdf": "oriana_pitchdeck.pdf",
+    "batch": "aug2025"
+  },
+  {
+    "id": "skipper",
+    "company": "Skipper",
+    "ticker": "SKIPPER.NS",
+    "date": "2026-01-15",
+    "pdf": "Skipper Pitch.pdf",
+    "batch": "jan2026"
+  },
+  {
+    "id": "ndr",
+    "company": "NDR Auto Components",
+    "ticker": "NDRAUTO.NS",
+    "date": "2026-01-15",
+    "pdf": "NDR Auto Components .pdf",
+    "batch": "jan2026"
+  },
+  {
+    "id": "interarch",
+    "company": "Interarch Building",
+    "ticker": "INTERARCH.NS",
+    "date": "2026-01-15",
+    "pdf": "interarch pitch.pdf",
+    "batch": "jan2026"
+  }
+]

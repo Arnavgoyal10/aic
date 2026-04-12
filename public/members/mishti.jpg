@@ -1,0 +1,131 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Ashoka University
+</title><link rel="stylesheet" type="text/css" href="css/style.css" />
+    <style>
+        .Wrpper_div {
+            width: 400px;
+            text-align: center;
+            margin: 50px auto 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .Logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .Logo img {
+            width: 195px !important;
+        }
+
+        h1 {
+            font-family: Georgia;
+            font-weight: normal;
+            font-size: 34px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        a.Log_btn {
+            text-decoration: none;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            -webkit-transition: all 0.3s ease-in-out;
+            background: #c5122f;
+            font-size: 20px;
+            font-family: Georgia;
+            padding: 10px 20px;
+            display: inline-block;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+            a.Log_btn:hover {
+                background: #0d3862;
+            }
+    </style>
+
+</head>
+<body>
+    <form method="post" action="./FileNotAccess.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="DYSNqPqWgkTsRZNVYa2C1xp6YAOgST5Z2n94KXqyTndcigITlhBqLQGb8ghLmwxziLTPavPhZkUrZ60v9sl5vTkg0iIdYcKrCB7reqkBwRI=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="31E78AD2" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="TK3HCpnurAMYVO3Sl+dNQgmx249lsZkCY28bDqQFyIPCulmdPzdtdGZ6siS+5xxuLtgSc4Uv5ylWWWD9R2wFlbU0+SwfhmLNKiJACD5JrLvtsZdYyLlGgX7BnZJPwuaE" />
+</div>
+        <div class="Wrpper_div" style="width: 70%;">
+            <div class="Logo">
+                <img src="/AshokaLogos/ashoka-verti-blue.png" alt="Ashoka LMS" />
+            </div>
+            <h1>To access this file you need to login AMS portal</h1>
+            
+            <br />
+            <br />
+            <a id="btnLogin" class="Log_btn" href="javascript:__doPostBack(&#39;btnLogin&#39;,&#39;&#39;)">Click here to Login AMS portal</a>
+
+        </div>
+    </form>
+</body>
+<script>
+    function preventBack() { window.history.forward(); }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
+    function killBackSpace(e) {
+        e = e ? e : window.event;
+        var t = e.target ? e.target : e.srcElement ? e.srcElement : null;
+        if (t && t.tagName && (t.type && /(search)|(password)|(text)|(file)/.test(t.type.toLowerCase())) || t.tagName.toLowerCase() == 'textarea' || t.tagName.toLowerCase() == 'div')
+            return true;
+        var k = e.keyCode ? e.keyCode : e.which ? e.which : null;
+        if (k == 8) {
+            if (e.preventDefault)
+                e.preventDefault();
+            return false;
+        };
+        return true;
+    };
+    if (typeof document.addEventListener != 'undefined')
+        document.addEventListener('keydown', killBackSpace, false);
+    else if (typeof document.attachEvent != 'undefined')
+        document.attachEvent('onkeydown', killBackSpace);
+    else {
+        if (document.onkeydown != null) {
+            var oldOnkeydown = document.onkeydown;
+            document.onkeydown = function (e) {
+                oldOnkeydown(e);
+                killBackSpace(e);
+            };
+        }
+
+        else
+            document.onkeydown = killBackSpace;
+    }
+</script>
+</html>

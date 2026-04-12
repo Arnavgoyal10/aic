@@ -1,0 +1,852 @@
+{
+  "series": [
+    {
+      "date": "2025-08-01",
+      "stockReturn": 0,
+      "niftyReturn": 0
+    },
+    {
+      "date": "2025-08-04",
+      "stockReturn": -1,
+      "niftyReturn": 0.64
+    },
+    {
+      "date": "2025-08-05",
+      "stockReturn": -0.4,
+      "niftyReturn": 0.34
+    },
+    {
+      "date": "2025-08-06",
+      "stockReturn": -2.65,
+      "niftyReturn": 0.04
+    },
+    {
+      "date": "2025-08-07",
+      "stockReturn": -3.48,
+      "niftyReturn": 0.13
+    },
+    {
+      "date": "2025-08-08",
+      "stockReturn": -1.13,
+      "niftyReturn": -0.82
+    },
+    {
+      "date": "2025-08-11",
+      "stockReturn": -9.08,
+      "niftyReturn": 0.08
+    },
+    {
+      "date": "2025-08-12",
+      "stockReturn": -9.33,
+      "niftyReturn": -0.32
+    },
+    {
+      "date": "2025-08-13",
+      "stockReturn": -7.33,
+      "niftyReturn": 0.22
+    },
+    {
+      "date": "2025-08-14",
+      "stockReturn": -7.45,
+      "niftyReturn": 0.27
+    },
+    {
+      "date": "2025-08-18",
+      "stockReturn": -3.48,
+      "niftyReturn": 1.27
+    },
+    {
+      "date": "2025-08-19",
+      "stockReturn": -2.19,
+      "niftyReturn": 1.69
+    },
+    {
+      "date": "2025-08-20",
+      "stockReturn": -5,
+      "niftyReturn": 1.98
+    },
+    {
+      "date": "2025-08-21",
+      "stockReturn": -4.88,
+      "niftyReturn": 2.11
+    },
+    {
+      "date": "2025-08-22",
+      "stockReturn": -5.68,
+      "niftyReturn": 1.24
+    },
+    {
+      "date": "2025-08-25",
+      "stockReturn": -6,
+      "niftyReturn": 1.64
+    },
+    {
+      "date": "2025-08-26",
+      "stockReturn": -7.14,
+      "niftyReturn": 0.6
+    },
+    {
+      "date": "2025-08-28",
+      "stockReturn": -8.08,
+      "niftyReturn": -0.26
+    },
+    {
+      "date": "2025-08-29",
+      "stockReturn": -9.32,
+      "niftyReturn": -0.56
+    },
+    {
+      "date": "2025-09-01",
+      "stockReturn": -7.2,
+      "niftyReturn": 0.24
+    },
+    {
+      "date": "2025-09-02",
+      "stockReturn": -9.51,
+      "niftyReturn": 0.06
+    },
+    {
+      "date": "2025-09-03",
+      "stockReturn": -9.76,
+      "niftyReturn": 0.61
+    },
+    {
+      "date": "2025-09-04",
+      "stockReturn": -9.4,
+      "niftyReturn": 0.69
+    },
+    {
+      "date": "2025-09-05",
+      "stockReturn": -7.69,
+      "niftyReturn": 0.72
+    },
+    {
+      "date": "2025-09-08",
+      "stockReturn": -9.37,
+      "niftyReturn": 0.85
+    },
+    {
+      "date": "2025-09-09",
+      "stockReturn": -10.32,
+      "niftyReturn": 1.23
+    },
+    {
+      "date": "2025-09-10",
+      "stockReturn": -8.27,
+      "niftyReturn": 1.66
+    },
+    {
+      "date": "2025-09-11",
+      "stockReturn": -9.23,
+      "niftyReturn": 1.79
+    },
+    {
+      "date": "2025-09-12",
+      "stockReturn": -11.45,
+      "niftyReturn": 2.23
+    },
+    {
+      "date": "2025-09-15",
+      "stockReturn": -10.31,
+      "niftyReturn": 2.05
+    },
+    {
+      "date": "2025-09-16",
+      "stockReturn": -12.11,
+      "niftyReturn": 2.74
+    },
+    {
+      "date": "2025-09-17",
+      "stockReturn": -13.13,
+      "niftyReturn": 3.11
+    },
+    {
+      "date": "2025-09-18",
+      "stockReturn": -11.91,
+      "niftyReturn": 3.49
+    },
+    {
+      "date": "2025-09-19",
+      "stockReturn": -13.33,
+      "niftyReturn": 3.1
+    },
+    {
+      "date": "2025-09-22",
+      "stockReturn": -13.86,
+      "niftyReturn": 2.59
+    },
+    {
+      "date": "2025-09-23",
+      "stockReturn": -15.27,
+      "niftyReturn": 2.46
+    },
+    {
+      "date": "2025-09-24",
+      "stockReturn": -16.33,
+      "niftyReturn": 2
+    },
+    {
+      "date": "2025-09-25",
+      "stockReturn": -15.21,
+      "niftyReturn": 1.33
+    },
+    {
+      "date": "2025-09-26",
+      "stockReturn": -16.9,
+      "niftyReturn": 0.36
+    },
+    {
+      "date": "2025-09-29",
+      "stockReturn": -17.67,
+      "niftyReturn": 0.28
+    },
+    {
+      "date": "2025-09-30",
+      "stockReturn": -14.53,
+      "niftyReturn": 0.19
+    },
+    {
+      "date": "2025-10-01",
+      "stockReturn": -15.83,
+      "niftyReturn": 1.1
+    },
+    {
+      "date": "2025-10-03",
+      "stockReturn": -16.18,
+      "niftyReturn": 1.34
+    },
+    {
+      "date": "2025-10-06",
+      "stockReturn": -18.01,
+      "niftyReturn": 2.09
+    },
+    {
+      "date": "2025-10-07",
+      "stockReturn": -14.94,
+      "niftyReturn": 2.21
+    },
+    {
+      "date": "2025-10-08",
+      "stockReturn": -12.99,
+      "niftyReturn": 1.96
+    },
+    {
+      "date": "2025-10-09",
+      "stockReturn": -13.5,
+      "niftyReturn": 2.51
+    },
+    {
+      "date": "2025-10-10",
+      "stockReturn": -13.85,
+      "niftyReturn": 2.93
+    },
+    {
+      "date": "2025-10-13",
+      "stockReturn": -13.74,
+      "niftyReturn": 2.69
+    },
+    {
+      "date": "2025-10-14",
+      "stockReturn": -14.83,
+      "niftyReturn": 2.36
+    },
+    {
+      "date": "2025-10-15",
+      "stockReturn": -16.55,
+      "niftyReturn": 3.09
+    },
+    {
+      "date": "2025-10-16",
+      "stockReturn": -15.83,
+      "niftyReturn": 4.15
+    },
+    {
+      "date": "2025-10-17",
+      "stockReturn": -15.09,
+      "niftyReturn": 4.66
+    },
+    {
+      "date": "2025-10-20",
+      "stockReturn": -15.19,
+      "niftyReturn": 5.2
+    },
+    {
+      "date": "2025-10-21",
+      "stockReturn": -13.82,
+      "niftyReturn": 5.31
+    },
+    {
+      "date": "2025-10-23",
+      "stockReturn": -14.98,
+      "niftyReturn": 5.4
+    },
+    {
+      "date": "2025-10-24",
+      "stockReturn": -16.57,
+      "niftyReturn": 5.01
+    },
+    {
+      "date": "2025-10-27",
+      "stockReturn": -15,
+      "niftyReturn": 5.7
+    },
+    {
+      "date": "2025-10-28",
+      "stockReturn": -14.7,
+      "niftyReturn": 5.58
+    },
+    {
+      "date": "2025-10-29",
+      "stockReturn": -15.33,
+      "niftyReturn": 6.06
+    },
+    {
+      "date": "2025-10-30",
+      "stockReturn": -15,
+      "niftyReturn": 5.34
+    },
+    {
+      "date": "2025-10-31",
+      "stockReturn": -15.2,
+      "niftyReturn": 4.71
+    },
+    {
+      "date": "2025-11-03",
+      "stockReturn": -15.29,
+      "niftyReturn": 4.88
+    },
+    {
+      "date": "2025-11-04",
+      "stockReturn": -17.15,
+      "niftyReturn": 4.2
+    },
+    {
+      "date": "2025-11-06",
+      "stockReturn": -18.86,
+      "niftyReturn": 3.84
+    },
+    {
+      "date": "2025-11-07",
+      "stockReturn": -16.43,
+      "niftyReturn": 3.77
+    },
+    {
+      "date": "2025-11-10",
+      "stockReturn": -12.31,
+      "niftyReturn": 4.11
+    },
+    {
+      "date": "2025-11-11",
+      "stockReturn": -16.46,
+      "niftyReturn": 4.6
+    },
+    {
+      "date": "2025-11-12",
+      "stockReturn": -12.97,
+      "niftyReturn": 5.33
+    },
+    {
+      "date": "2025-11-13",
+      "stockReturn": -12,
+      "niftyReturn": 5.35
+    },
+    {
+      "date": "2025-11-14",
+      "stockReturn": -13.98,
+      "niftyReturn": 5.47
+    },
+    {
+      "date": "2025-11-17",
+      "stockReturn": -12.83,
+      "niftyReturn": 5.89
+    },
+    {
+      "date": "2025-11-18",
+      "stockReturn": -13,
+      "niftyReturn": 5.47
+    },
+    {
+      "date": "2025-11-19",
+      "stockReturn": -16.85,
+      "niftyReturn": 6.05
+    },
+    {
+      "date": "2025-11-20",
+      "stockReturn": -17.89,
+      "niftyReturn": 6.62
+    },
+    {
+      "date": "2025-11-21",
+      "stockReturn": -18.52,
+      "niftyReturn": 6.12
+    },
+    {
+      "date": "2025-11-24",
+      "stockReturn": -18.37,
+      "niftyReturn": 5.68
+    },
+    {
+      "date": "2025-11-25",
+      "stockReturn": -18.69,
+      "niftyReturn": 5.37
+    },
+    {
+      "date": "2025-11-26",
+      "stockReturn": -19.44,
+      "niftyReturn": 6.68
+    },
+    {
+      "date": "2025-11-27",
+      "stockReturn": -20.69,
+      "niftyReturn": 6.72
+    },
+    {
+      "date": "2025-11-28",
+      "stockReturn": -18.47,
+      "niftyReturn": 6.67
+    },
+    {
+      "date": "2025-12-01",
+      "stockReturn": -19.42,
+      "niftyReturn": 6.56
+    },
+    {
+      "date": "2025-12-02",
+      "stockReturn": -19.2,
+      "niftyReturn": 5.97
+    },
+    {
+      "date": "2025-12-03",
+      "stockReturn": -19.36,
+      "niftyReturn": 5.78
+    },
+    {
+      "date": "2025-12-04",
+      "stockReturn": -20.28,
+      "niftyReturn": 5.98
+    },
+    {
+      "date": "2025-12-05",
+      "stockReturn": -20.69,
+      "niftyReturn": 6.6
+    },
+    {
+      "date": "2025-12-08",
+      "stockReturn": -23.35,
+      "niftyReturn": 5.68
+    },
+    {
+      "date": "2025-12-09",
+      "stockReturn": -22.09,
+      "niftyReturn": 5.19
+    },
+    {
+      "date": "2025-12-10",
+      "stockReturn": -21.6,
+      "niftyReturn": 4.86
+    },
+    {
+      "date": "2025-12-11",
+      "stockReturn": -22.77,
+      "niftyReturn": 5.43
+    },
+    {
+      "date": "2025-12-12",
+      "stockReturn": -23.56,
+      "niftyReturn": 6.03
+    },
+    {
+      "date": "2025-12-15",
+      "stockReturn": -23.16,
+      "niftyReturn": 5.95
+    },
+    {
+      "date": "2025-12-16",
+      "stockReturn": -23.42,
+      "niftyReturn": 5.27
+    },
+    {
+      "date": "2025-12-17",
+      "stockReturn": -24.51,
+      "niftyReturn": 5.1
+    },
+    {
+      "date": "2025-12-18",
+      "stockReturn": -25.12,
+      "niftyReturn": 5.09
+    },
+    {
+      "date": "2025-12-19",
+      "stockReturn": -25.98,
+      "niftyReturn": 5.7
+    },
+    {
+      "date": "2025-12-22",
+      "stockReturn": -25.69,
+      "niftyReturn": 6.54
+    },
+    {
+      "date": "2025-12-23",
+      "stockReturn": -26.16,
+      "niftyReturn": 6.56
+    },
+    {
+      "date": "2025-12-24",
+      "stockReturn": -26.14,
+      "niftyReturn": 6.42
+    },
+    {
+      "date": "2025-12-26",
+      "stockReturn": -26.93,
+      "niftyReturn": 6.01
+    },
+    {
+      "date": "2025-12-29",
+      "stockReturn": -27.18,
+      "niftyReturn": 5.6
+    },
+    {
+      "date": "2025-12-30",
+      "stockReturn": -22.83,
+      "niftyReturn": 5.59
+    },
+    {
+      "date": "2025-12-31",
+      "stockReturn": -21.24,
+      "niftyReturn": 6.37
+    },
+    {
+      "date": "2026-01-01",
+      "stockReturn": -13.34,
+      "niftyReturn": 6.44
+    },
+    {
+      "date": "2026-01-02",
+      "stockReturn": -13.81,
+      "niftyReturn": 7.18
+    },
+    {
+      "date": "2026-01-05",
+      "stockReturn": -14.65,
+      "niftyReturn": 6.86
+    },
+    {
+      "date": "2026-01-06",
+      "stockReturn": -8.47,
+      "niftyReturn": 6.57
+    },
+    {
+      "date": "2026-01-07",
+      "stockReturn": -10.01,
+      "niftyReturn": 6.41
+    },
+    {
+      "date": "2026-01-08",
+      "stockReturn": -10.5,
+      "niftyReturn": 5.34
+    },
+    {
+      "date": "2026-01-09",
+      "stockReturn": -9.89,
+      "niftyReturn": 4.55
+    },
+    {
+      "date": "2026-01-12",
+      "stockReturn": -5.71,
+      "niftyReturn": 4.99
+    },
+    {
+      "date": "2026-01-13",
+      "stockReturn": -6.12,
+      "niftyReturn": 4.75
+    },
+    {
+      "date": "2026-01-14",
+      "stockReturn": -7.07,
+      "niftyReturn": 4.48
+    },
+    {
+      "date": "2026-01-16",
+      "stockReturn": -8.55,
+      "niftyReturn": 4.6
+    },
+    {
+      "date": "2026-01-19",
+      "stockReturn": -7.88,
+      "niftyReturn": 4.15
+    },
+    {
+      "date": "2026-01-20",
+      "stockReturn": -12.21,
+      "niftyReturn": 2.72
+    },
+    {
+      "date": "2026-01-21",
+      "stockReturn": -15.09,
+      "niftyReturn": 2.41
+    },
+    {
+      "date": "2026-01-22",
+      "stockReturn": -9.68,
+      "niftyReturn": 2.95
+    },
+    {
+      "date": "2026-01-23",
+      "stockReturn": -11.13,
+      "niftyReturn": 1.97
+    },
+    {
+      "date": "2026-01-27",
+      "stockReturn": -13.39,
+      "niftyReturn": 2.48
+    },
+    {
+      "date": "2026-01-28",
+      "stockReturn": -13.85,
+      "niftyReturn": 3.16
+    },
+    {
+      "date": "2026-01-29",
+      "stockReturn": -15.13,
+      "niftyReturn": 3.47
+    },
+    {
+      "date": "2026-01-30",
+      "stockReturn": -15.24,
+      "niftyReturn": 3.07
+    },
+    {
+      "date": "2026-02-02",
+      "stockReturn": -13.29,
+      "niftyReturn": 2.13
+    },
+    {
+      "date": "2026-02-03",
+      "stockReturn": -12.24,
+      "niftyReturn": 4.73
+    },
+    {
+      "date": "2026-02-04",
+      "stockReturn": -13.19,
+      "niftyReturn": 4.93
+    },
+    {
+      "date": "2026-02-05",
+      "stockReturn": -13.14,
+      "niftyReturn": 4.39
+    },
+    {
+      "date": "2026-02-06",
+      "stockReturn": -12.49,
+      "niftyReturn": 4.59
+    },
+    {
+      "date": "2026-02-09",
+      "stockReturn": -10.79,
+      "niftyReturn": 5.3
+    },
+    {
+      "date": "2026-02-10",
+      "stockReturn": -11.66,
+      "niftyReturn": 5.58
+    },
+    {
+      "date": "2026-02-11",
+      "stockReturn": -11.88,
+      "niftyReturn": 5.65
+    },
+    {
+      "date": "2026-02-12",
+      "stockReturn": -11.27,
+      "niftyReturn": 5.06
+    },
+    {
+      "date": "2026-02-13",
+      "stockReturn": -11.88,
+      "niftyReturn": 3.69
+    },
+    {
+      "date": "2026-02-16",
+      "stockReturn": -15.8,
+      "niftyReturn": 4.55
+    },
+    {
+      "date": "2026-02-17",
+      "stockReturn": -15.17,
+      "niftyReturn": 4.72
+    },
+    {
+      "date": "2026-02-18",
+      "stockReturn": -15.11,
+      "niftyReturn": 5.1
+    },
+    {
+      "date": "2026-02-19",
+      "stockReturn": -16.29,
+      "niftyReturn": 3.62
+    },
+    {
+      "date": "2026-02-20",
+      "stockReturn": -17.21,
+      "niftyReturn": 4.09
+    },
+    {
+      "date": "2026-02-23",
+      "stockReturn": -18.53,
+      "niftyReturn": 4.67
+    },
+    {
+      "date": "2026-02-24",
+      "stockReturn": -21.11,
+      "niftyReturn": 3.5
+    },
+    {
+      "date": "2026-02-25",
+      "stockReturn": -18.61,
+      "niftyReturn": 3.73
+    },
+    {
+      "date": "2026-02-26",
+      "stockReturn": -18.57,
+      "niftyReturn": 3.79
+    },
+    {
+      "date": "2026-02-27",
+      "stockReturn": -20.83,
+      "niftyReturn": 2.5
+    },
+    {
+      "date": "2026-03-02",
+      "stockReturn": -21.37,
+      "niftyReturn": 1.22
+    },
+    {
+      "date": "2026-03-04",
+      "stockReturn": -20.16,
+      "niftyReturn": -0.35
+    },
+    {
+      "date": "2026-03-05",
+      "stockReturn": -19.68,
+      "niftyReturn": 0.82
+    },
+    {
+      "date": "2026-03-06",
+      "stockReturn": -19.75,
+      "niftyReturn": -0.47
+    },
+    {
+      "date": "2026-03-09",
+      "stockReturn": -21.01,
+      "niftyReturn": -2.19
+    },
+    {
+      "date": "2026-03-10",
+      "stockReturn": -20.71,
+      "niftyReturn": -1.24
+    },
+    {
+      "date": "2026-03-11",
+      "stockReturn": -21.44,
+      "niftyReturn": -2.84
+    },
+    {
+      "date": "2026-03-12",
+      "stockReturn": -21.89,
+      "niftyReturn": -3.77
+    },
+    {
+      "date": "2026-03-13",
+      "stockReturn": -22.29,
+      "niftyReturn": -5.76
+    },
+    {
+      "date": "2026-03-16",
+      "stockReturn": -23.19,
+      "niftyReturn": -4.71
+    },
+    {
+      "date": "2026-03-17",
+      "stockReturn": -21.24,
+      "niftyReturn": -4.01
+    },
+    {
+      "date": "2026-03-18",
+      "stockReturn": -14.7,
+      "niftyReturn": -3.21
+    },
+    {
+      "date": "2026-03-19",
+      "stockReturn": -15.86,
+      "niftyReturn": -6.36
+    },
+    {
+      "date": "2026-03-20",
+      "stockReturn": -14.01,
+      "niftyReturn": -5.91
+    },
+    {
+      "date": "2026-03-23",
+      "stockReturn": -10.91,
+      "niftyReturn": -8.36
+    },
+    {
+      "date": "2026-03-24",
+      "stockReturn": -5.95,
+      "niftyReturn": -6.73
+    },
+    {
+      "date": "2026-03-25",
+      "stockReturn": -5.05,
+      "niftyReturn": -5.12
+    },
+    {
+      "date": "2026-03-27",
+      "stockReturn": -5,
+      "niftyReturn": -7.11
+    },
+    {
+      "date": "2026-03-30",
+      "stockReturn": -4.27,
+      "niftyReturn": -9.09
+    },
+    {
+      "date": "2026-04-01",
+      "stockReturn": -4.37,
+      "niftyReturn": -7.68
+    },
+    {
+      "date": "2026-04-02",
+      "stockReturn": -4.17,
+      "niftyReturn": -7.54
+    },
+    {
+      "date": "2026-04-06",
+      "stockReturn": -5.3,
+      "niftyReturn": -6.5
+    },
+    {
+      "date": "2026-04-07",
+      "stockReturn": -10.93,
+      "niftyReturn": -5.87
+    },
+    {
+      "date": "2026-04-08",
+      "stockReturn": -10.92,
+      "niftyReturn": -2.31
+    },
+    {
+      "date": "2026-04-09",
+      "stockReturn": -9.41,
+      "niftyReturn": -3.22
+    },
+    {
+      "date": "2026-04-10",
+      "stockReturn": -8.15,
+      "niftyReturn": -2.1
+    }
+  ],
+  "alpha": -6.05,
+  "ticker": "ENTERO.NS",
+  "fetched": "2026-04-12"
+}

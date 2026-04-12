@@ -1,5 +1,39 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode in Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens (switch on html.dark) ─────────────────── */
+:root {
+  --c-bg:             #ffffff;
+  --c-surface:        #fafafa;
+  --c-surface-raised: #ffffff;
+  --c-border:         #e2e8f0;
+  --c-border-subtle:  #f1f5f9;
+  --c-text:           #0f172a;
+  --c-text-2:         #475569;
+  --c-text-3:         #94a3b8;
+  --c-text-4:         #cbd5e1;
+  --c-green-bg:       #f0fdf4;
+  --c-green-border:   #bbf7d0;
+  --c-input-bg:       #ffffff;
+}
+
+html.dark {
+  --c-bg:             #0d1117;
+  --c-surface:        #161b22;
+  --c-surface-raised: #21262d;
+  --c-border:         #30363d;
+  --c-border-subtle:  #21262d;
+  --c-text:           #e6edf3;
+  --c-text-2:         #8b949e;
+  --c-text-3:         #6e7681;
+  --c-text-4:         #3d444d;
+  --c-green-bg:       #0d2a1c;
+  --c-green-border:   #1a4731;
+  --c-input-bg:       #21262d;
+}
+
 @theme inline {
   --color-background: #ffffff;
   --color-foreground: #0f172a;
@@ -30,8 +64,8 @@
 * { box-sizing: border-box; }
 
 body {
-  background: #ffffff;
-  color: #0f172a;
+  background: var(--c-bg);
+  color: var(--c-text);
   font-family: var(--font-geist-sans, 'Inter', Arial, sans-serif);
   -webkit-font-smoothing: antialiased;
 }
@@ -40,3 +74,17 @@ body {
 ::-webkit-scrollbar-track { background: #f8fafc; }
 ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #16a34a; }
+
+/* Oracle chat markdown prose */
+.oracle-prose p { margin: 0 0 0.5em; font-size: 0.75rem; line-height: 1.6; color: var(--c-text); }
+.oracle-prose p:last-child { margin-bottom: 0; }
+.oracle-prose strong { font-weight: 600; color: #0f172a; }
+.oracle-prose em { font-style: italic; }
+.oracle-prose ul { margin: 0.25em 0 0.5em 1em; list-style: disc; }
+.oracle-prose ol { margin: 0.25em 0 0.5em 1em; list-style: decimal; }
+.oracle-prose li { font-size: 0.75rem; line-height: 1.6; color: var(--c-text); margin-bottom: 0.15em; }
+.oracle-prose h2 { font-size: 0.8rem; font-weight: 700; color: var(--c-text); margin: 0.75em 0 0.25em; }
+.oracle-prose h3 { font-size: 0.75rem; font-weight: 600; color: var(--c-text); margin: 0.5em 0 0.2em; }
+.oracle-prose blockquote { border-left: 2px solid #bbf7d0; padding-left: 0.75em; margin: 0.5em 0; color: #64748b; font-size: 0.7rem; }
+.oracle-prose code { background: #f1f5f9; border-radius: 3px; padding: 0.1em 0.3em; font-size: 0.7rem; font-family: monospace; }
+.oracle-prose hr { border: none; border-top: 1px solid #f1f5f9; margin: 0.75em 0; }

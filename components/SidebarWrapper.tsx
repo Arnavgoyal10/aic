@@ -4,19 +4,32 @@ import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useAuth } from "@/lib/AuthContext";
+import { useDark } from "@/lib/DarkModeContext";
 import members from "@/data/members.json";
 import ThePit from "./ThePit";
-import { TrendingUp, LogOut } from "lucide-react";
+import OracleChat from "./OracleChat";
+import { TrendingUp, LogOut, BarChart2, MessageSquare, Sparkles, Sun, Moon, LayoutDashboard } from "lucide-react";
+import Link from "next/link";
 
 function deleteCookie(name: string) {
   document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
 }
 
+const AIC_GREEN = "#16a34a";
+
 export default function SidebarWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const { user, memberId, loading } = useAuth();
-  const isLoginPage = pathname === "/login";
+  const { dark, toggle } = useDark();
+
+  if (pathname === "/login") return <>{children}</>;
+
+  const myMember = memberId ? members.find((m) => m.id === memberId) : null;
+
+  // Hide floating panels on their dedicated pages
+  const showFloatingPit = pathname !== "/pit";
+  const showFloatingOracle = pathname !== "/oracle";
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -24,97 +37,143 @@ export default function SidebarWrapper({ children }: { children: React.ReactNode
     router.push("/login");
   };
 
-  if (isLoginPage) return <>{children}</>;
-
-  // Find this user's member record
-  const myMember = memberId ? members.find((m) => m.id === memberId) : null;
+  const navItem = (href: string, icon: React.ReactNode, label: string) => {
+    const active = pathname === href || pathname.startsWith(href + "/");
+    return (
+      <Link
+        href={href}
+        className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium transition-all"
+        style={{
+          background: active ? "var(--c-green-bg)" : "transparent",
+          color: active ? AIC_GREEN : "var(--c-text-3)",
+          border: active ? "1px solid var(--c-green-border)" : "1px solid transparent",
+        }}
+      >
+        {icon}
+        {label}
+      </Link>
+    );
+  };
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
+    <div
+      className="flex h-screen overflow-hidden"
+      style={{ background: "var(--c-bg)" }}
+    >
+      {/* ── Sidebar ───────────────────────────────────────── */}
       <aside
-        className="w-60 shrink-0 flex flex-col border-r border-slate-100 bg-white overflow-y-auto"
-        style={{ boxShadow: "2px 0 12px rgba(0,0,0,0.03)" }}
+        className="w-56 shrink-0 flex flex-col"
+        style={{
+          background: "var(--c-surface)",
+          borderRight: "1px solid var(--c-border)",
+          boxShadow: "2px 0 12px rgba(0,0,0,0.04)",
+        }}
       >
         {/* Logo */}
-        <div className="px-5 py-5 border-b border-slate-100">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#f0fdf4] border border-[#bbf7d0] flex items-center justify-center">
-              <TrendingUp className="w-4 h-4 text-[#16a34a]" strokeWidth={2.5} />
+        <div className="px-5 py-5" style={{ borderBottom: "1px solid var(--c-border)" }}>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{ background: "var(--c-green-bg)", border: "1px solid var(--c-green-border)" }}
+              >
+                <TrendingUp className="w-4 h-4" style={{ color: AIC_GREEN }} strokeWidth={2.5} />
+              </div>
+              <div>
+                <p className="text-sm font-bold leading-none" style={{ color: "var(--c-text)" }}>BODHI</p>
+                <p className="text-[10px] mt-0.5 tracking-wider uppercase" style={{ color: "var(--c-text-3)" }}>Capital</p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm font-bold text-[#0f172a] leading-none">BODHI</p>
-              <p className="text-[10px] text-slate-400 mt-0.5 tracking-wider uppercase">Capital</p>
-            </div>
+            {/* Dark mode toggle */}
+            <button
+              onClick={toggle}
+              className="w-7 h-7 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+              style={{ background: "var(--c-border-subtle)", color: "var(--c-text-3)" }}
+              title={dark ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {dark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+            </button>
           </div>
         </div>
 
-        {/* Member profile card — only their own */}
-        <div className="px-3 py-4 flex-1">
+        {/* Member card */}
+        <div className="px-4 py-5 flex-1 overflow-y-auto">
           {loading ? (
-            <div className="px-2 py-3">
-              <div className="h-4 w-24 bg-slate-100 rounded animate-pulse mb-2" />
-              <div className="h-3 w-16 bg-slate-100 rounded animate-pulse" />
+            <div className="space-y-2">
+              <div className="h-10 w-10 rounded-full animate-pulse" style={{ background: "var(--c-border)" }} />
+              <div className="h-3 w-24 rounded animate-pulse" style={{ background: "var(--c-border)" }} />
             </div>
           ) : myMember ? (
-            <>
-              <p className="text-[10px] font-semibold text-slate-400 tracking-widest uppercase px-2 mb-3">
+            <div className="space-y-4">
+              <p className="text-[10px] font-semibold tracking-widest uppercase" style={{ color: "var(--c-text-3)" }}>
                 My Profile
               </p>
-              <div
-                className="flex items-center gap-3 px-3 py-3 rounded-xl"
-                style={{ background: "#f0fdf4", border: "1.5px solid #bbf7d0" }}
-              >
+              <div className="flex items-center gap-3">
                 <div
-                  className="w-9 h-9 rounded-full overflow-hidden shrink-0 border-2"
-                  style={{ borderColor: "#16a34a" }}
+                  className="w-10 h-10 rounded-xl overflow-hidden shrink-0 border-2"
+                  style={{ borderColor: AIC_GREEN }}
                 >
-                  <img
-                    src={myMember.image}
-                    alt={myMember.name}
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={myMember.image} alt={myMember.name} className="w-full h-full object-cover" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#15803d] truncate leading-tight">
-                    {myMember.name}
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold truncate leading-tight" style={{ color: "var(--c-text)" }}>
+                    {myMember.name.split(" ")[0]}
                   </p>
-                  <p className="text-[10px] text-[#16a34a]/70 mt-0.5 truncate">
-                    Pitching {myMember.nextPitch.ticker}
+                  <p className="text-[10px] truncate mt-0.5" style={{ color: "var(--c-text-3)" }}>
+                    {myMember.name.split(" ").slice(1).join(" ")}
                   </p>
                 </div>
               </div>
 
-              {/* Stats */}
-              <div className="mt-4 px-2 space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="text-slate-400">Past pitch</span>
-                  <span className="font-medium text-[#0f172a]">{myMember.pastPitch.ticker}</span>
+              {/* Club stats */}
+              <div
+                className="rounded-xl p-3"
+                style={{ background: "var(--c-border-subtle)", border: "1px solid var(--c-border)" }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <BarChart2 className="w-3.5 h-3.5" style={{ color: AIC_GREEN }} />
+                  <span className="text-[10px] font-semibold" style={{ color: "var(--c-text)" }}>Club Coverage</span>
                 </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-slate-400">Next pitch</span>
-                  <span className="font-medium text-[#16a34a]">{myMember.nextPitch.ticker}</span>
-                </div>
+                <p className="text-[10px]" style={{ color: "var(--c-text-3)" }}>8 pitches tracked</p>
+                <p className="text-[10px] mt-0.5" style={{ color: "var(--c-text-3)" }}>Aug 2025 · Jan 2026</p>
               </div>
-            </>
-          ) : (
-            // User logged in but not mapped to a member — show club info
-            <div className="px-2 py-3">
-              <p className="text-xs text-slate-400">
-                Welcome to BODHI Capital
-              </p>
             </div>
+          ) : (
+            <p className="text-xs" style={{ color: "var(--c-text-3)" }}>Welcome to BODHI Capital</p>
           )}
+
+          {/* Navigation */}
+          <div className="mt-5 space-y-1">
+            <p className="text-[10px] font-semibold tracking-widest uppercase mb-2" style={{ color: "var(--c-text-4)" }}>
+              Navigate
+            </p>
+            {memberId && navItem(
+              `/${memberId}`,
+              <LayoutDashboard className="w-3.5 h-3.5" />,
+              "Dashboard"
+            )}
+            {navItem(
+              "/pit",
+              <MessageSquare className="w-3.5 h-3.5" />,
+              "The Pit"
+            )}
+            {navItem(
+              "/oracle",
+              <Sparkles className="w-3.5 h-3.5" />,
+              "BODHI Oracle"
+            )}
+          </div>
         </div>
 
-        {/* User info + logout */}
-        <div className="px-3 py-3 border-t border-slate-100">
+        {/* Footer */}
+        <div className="px-4 py-4" style={{ borderTop: "1px solid var(--c-border)" }}>
           {user?.email && (
-            <p className="text-[10px] text-slate-400 px-2 mb-2 truncate">{user.email}</p>
+            <p className="text-[10px] mb-2 truncate px-1" style={{ color: "var(--c-text-4)" }}>{user.email}</p>
           )}
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 w-full px-2.5 py-2 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all text-sm"
+            className="flex items-center gap-2 w-full px-2.5 py-2 rounded-lg text-sm transition-all hover:bg-rose-50 hover:text-rose-500"
+            style={{ color: "var(--c-text-3)" }}
           >
             <LogOut className="w-4 h-4" />
             <span>Sign out</span>
@@ -122,10 +181,13 @@ export default function SidebarWrapper({ children }: { children: React.ReactNode
         </div>
       </aside>
 
-      {/* Main content */}
-      <main className="flex-1 overflow-y-auto bg-[#fafafa]">{children}</main>
+      {/* ── Main ──────────────────────────────────────────── */}
+      <main className="flex-1 overflow-y-auto" style={{ background: "var(--c-surface)" }}>
+        {children}
+      </main>
 
-      <ThePit />
+      {showFloatingPit && <ThePit />}
+      {showFloatingOracle && <OracleChat />}
     </div>
   );
 }

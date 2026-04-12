@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import SidebarWrapper from "@/components/SidebarWrapper";
 import { AuthProvider } from "@/lib/AuthContext";
+import { DarkModeProvider } from "@/lib/DarkModeContext";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={geist.variable}>
       <body className="bg-white text-[#0f172a] antialiased">
-        <AuthProvider>
-          <SidebarWrapper>{children}</SidebarWrapper>
-        </AuthProvider>
+        <DarkModeProvider>
+          <AuthProvider>
+            <SidebarWrapper>{children}</SidebarWrapper>
+          </AuthProvider>
+        </DarkModeProvider>
       </body>
     </html>
   );

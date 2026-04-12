@@ -120,9 +120,9 @@ export async function POST(request: NextRequest) {
 
   // ── 3. Configure Gemini with Search Grounding ─────────────────
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
-    // googleSearchRetrieval is the correctly typed grounding tool for Gemini 1.5
-    tools: [{ googleSearchRetrieval: {} }],
+    model: "gemini-2.5-flash",
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    tools: [{ googleSearch: {} } as any],
     generationConfig: {
       temperature: 0.2,       // low temp → analytical, not creative
       maxOutputTokens: 2048,

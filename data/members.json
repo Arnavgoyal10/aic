@@ -1,74 +1,362 @@
 [
   {
-    "id": "arjun-sharma",
-    "name": "Arjun Sharma",
+    "id": "aadhya-rajesh-shetty",
+    "name": "Aadhya Rajesh Shetty",
+    "email": "placeholder@example.com",
+    "image": "/members/aadhya-rajesh-shetty.jpg"
+  },
+  {
+    "id": "aahan-desai",
+    "name": "Aahan Desai",
+    "email": "placeholder@example.com",
+    "image": "/members/aahan-desai.svg"
+  },
+  {
+    "id": "aanya-mishra",
+    "name": "Aanya Mishra",
+    "email": "placeholder@example.com",
+    "image": "/members/aanya-mishra.jpg"
+  },
+  {
+    "id": "aarav-sanghvi",
+    "name": "Aarav Sanghvi",
+    "email": "placeholder@example.com",
+    "image": "/members/aarav-sanghvi.jpg"
+  },
+  {
+    "id": "aarav-vivek-khetan",
+    "name": "Aarav Vivek Khetan",
+    "email": "placeholder@example.com",
+    "image": "/members/aarav-vivek-khetan.jpg"
+  },
+  {
+    "id": "abhiyash-kumar-jaini",
+    "name": "Abhiyash Kumar Jaini",
+    "email": "placeholder@example.com",
+    "image": "/members/abhiyash-kumar-jaini.jpg"
+  },
+  {
+    "id": "aditi-chhajed",
+    "name": "Aditi Chhajed",
+    "email": "placeholder@example.com",
+    "image": "/members/aditi-chhajed.jpg"
+  },
+  {
+    "id": "advait-premal-sanghavi",
+    "name": "Advait Premal Sanghavi",
+    "email": "placeholder@example.com",
+    "image": "/members/advait-premal-sanghavi.jpg"
+  },
+  {
+    "id": "advika-jajodia",
+    "name": "Advika Jajodia",
+    "email": "placeholder@example.com",
+    "image": "/members/advika-jajodia.jpg"
+  },
+  {
+    "id": "anya-ghosh",
+    "name": "Anya Ghosh",
+    "email": "placeholder@example.com",
+    "image": "/members/anya-ghosh.jpg"
+  },
+  {
+    "id": "anya-jain",
+    "name": "Anya Jain",
+    "email": "placeholder@example.com",
+    "image": "/members/anya-jain.jpg"
+  },
+  {
+    "id": "arjun-apurva-doshi",
+    "name": "Arjun Apurva Doshi",
+    "email": "placeholder@example.com",
+    "image": "/members/arjun-apurva-doshi.jpg"
+  },
+  {
+    "id": "arnav-balyan",
+    "name": "Arnav Balyan",
+    "email": "placeholder@example.com",
+    "image": "/members/arnav-balyan.jpg"
+  },
+  {
+    "id": "arnav-goyal",
+    "name": "Arnav Goyal",
     "email": "arnav.goyal_ug2023@ashoka.edu.in",
-    "image": "https://api.dicebear.com/8.x/avataaars/svg?seed=arjun&backgroundColor=b6e3f4",
-    "bio": "CFA Level I candidate. Deep value investing with a contrarian edge. Loves finding asymmetric risk-reward setups in beaten-down sectors.",
-    "presidentMemory": "Arjun, from day one you've been the quiet anchor of this club. The way you dissected Zomato's unit economics when everyone was chasing the hype — four pages of margin analysis at 2am — that's the kind of conviction that makes a great analyst. You don't follow the herd; you wait for the herd to pass, then move. Your intellectual honesty in the face of a bad trade is something I genuinely admire, and I know it's going to make you exceptional in this field.",
-    "favMemory": "Watching you defend your bear case on Paytm against five people who owned it — and being right.",
-    "pastPitch": {
-      "ticker": "HDFCBANK.NS",
-      "date": "2024-09-01"
-    },
-    "nextPitch": {
-      "ticker": "BAJFINANCE.NS",
-      "thesis": "NBFC resilience cycle play — credit costs have peaked, growth re-rating incoming."
-    },
-    "pitchPdfUrl": ""
+    "image": "/members/arnav-goyal.jpg"
   },
   {
-    "id": "priya-mehta",
-    "name": "Priya Mehta",
-    "email": "arnavgoyal63774@gmail.com",
-    "image": "https://api.dicebear.com/8.x/avataaars/svg?seed=priya&backgroundColor=ffd5dc",
-    "bio": "Macro-first investor with a love for global market linkages. Tracks RBI policy cycles obsessively and trades Indian equities through a macro lens.",
-    "presidentMemory": "Priya, you single-handedly elevated the intellectual bar of every room you walked into. I still think about your presentation on the RBI's policy transmission lag — the way you connected USD/INR moves to FMCG margin compression was genuinely original. You have a rare ability to simplify complexity without losing nuance. The club is sharper because you're in it, and any firm that hires you is going to wonder how they managed without you.",
-    "favMemory": "The late-night session where you predicted the rate pause before the MPC announcement — spot on.",
-    "pastPitch": {
-      "ticker": "RELIANCE.NS",
-      "date": "2024-10-15"
-    },
-    "nextPitch": {
-      "ticker": "SUNPHARMA.NS",
-      "thesis": "US generics recovery + India branded pharma growth = underappreciated multi-year compounder."
-    },
-    "pitchPdfUrl": ""
+    "id": "arnav-karnany",
+    "name": "Arnav Karnany",
+    "email": "placeholder@example.com",
+    "image": "/members/arnav-karnany.jpg"
   },
   {
-    "id": "rohan-kapoor",
-    "name": "Rohan Kapoor",
-    "email": "rohan@bodhicapital.in",
-    "image": "https://api.dicebear.com/8.x/avataaars/svg?seed=rohan&backgroundColor=c0aede",
-    "bio": "Tech-sector specialist. Believes in network effects and moats above all else. Reads S-1 filings for fun.",
-    "presidentMemory": "Rohan, your pitch on Tata Elxsi was one of the cleanest pieces of research this club has ever seen — TAM sizing, competitive moat, and management quality all woven together in under 10 slides. You have an engineer's precision but an investor's instinct. I've seen you grow from someone who asked 'what's a DCF?' to someone who tears apart management commentary line by line. That journey is something I'm genuinely proud to have been part of.",
-    "favMemory": "The 'this company has no moat' interruption during someone else's pitch — polite, surgical, and devastatingly correct.",
-    "pastPitch": {
-      "ticker": "INFY.NS",
-      "date": "2024-11-01"
-    },
-    "nextPitch": {
-      "ticker": "LTIM.NS",
-      "thesis": "LTIMindtree's BFSI vertical inflection — deal wins accelerating into a tight talent market."
-    },
-    "pitchPdfUrl": ""
+    "id": "avi-dhall",
+    "name": "Avi Dhall",
+    "email": "placeholder@example.com",
+    "image": "/members/avi-dhall.jpg"
   },
   {
-    "id": "sneha-iyer",
-    "name": "Sneha Iyer",
-    "email": "sneha@bodhicapital.in",
-    "image": "https://api.dicebear.com/8.x/avataaars/svg?seed=sneha&backgroundColor=d1f7c4",
-    "bio": "Consumer and retail sector maven. Tracks footfall data, credit card spending, and GST collections to call inflection points before consensus.",
-    "presidentMemory": "Sneha, you have a gift that can't be taught — you see things in data that others walk right past. Your channel-check framework for Avenue Supermarts was something a sell-side analyst would charge for. You're also the person who always asks the 'so what?' question at the end of every analysis, which forces everyone in the room to sharpen their thinking. BODHI is better because you push us to go one level deeper, always.",
-    "favMemory": "You calling the festive season spending boom two months early based on just credit card data and Rapido bookings.",
-    "pastPitch": {
-      "ticker": "DMART.NS",
-      "date": "2024-08-15"
-    },
-    "nextPitch": {
-      "ticker": "TRENT.NS",
-      "thesis": "Zudio store rollout cadence — Trent is quietly building the H&M of India at 3x the pace of any peer."
-    },
-    "pitchPdfUrl": ""
+    "id": "avika-kapur",
+    "name": "Avika Kapur",
+    "email": "placeholder@example.com",
+    "image": "/members/avika-kapur.jpg"
+  },
+  {
+    "id": "ayush-srivastava",
+    "name": "Ayush Srivastava",
+    "email": "placeholder@example.com",
+    "image": "/members/ayush-srivastava.jpg"
+  },
+  {
+    "id": "cara-sukhtankar",
+    "name": "Cara Sukhtankar",
+    "email": "placeholder@example.com",
+    "image": "/members/cara-sukhtankar.svg"
+  },
+  {
+    "id": "dersh-savla",
+    "name": "Dersh Savla",
+    "email": "placeholder@example.com",
+    "image": "/members/dersh-savla.svg"
+  },
+  {
+    "id": "devang-arora",
+    "name": "Devang Arora",
+    "email": "placeholder@example.com",
+    "image": "/members/devang-arora.jpg"
+  },
+  {
+    "id": "dhruv-agarwal",
+    "name": "Dhruv Agarwal",
+    "email": "placeholder@example.com",
+    "image": "/members/dhruv-agarwal.jpg"
+  },
+  {
+    "id": "dhruv-lunia",
+    "name": "Dhruv Lunia",
+    "email": "placeholder@example.com",
+    "image": "/members/dhruv-lunia.jpg"
+  },
+  {
+    "id": "garv-marodia",
+    "name": "Garv Marodia",
+    "email": "placeholder@example.com",
+    "image": "/members/garv-marodia.jpg"
+  },
+  {
+    "id": "heet-dhawale",
+    "name": "Heet Dhawale",
+    "email": "placeholder@example.com",
+    "image": "/members/heet-dhawale.jpg"
+  },
+  {
+    "id": "hridansh-ketan-sakaria",
+    "name": "Hridansh Ketan Sakaria",
+    "email": "placeholder@example.com",
+    "image": "/members/hridansh-ketan-sakaria.jpg"
+  },
+  {
+    "id": "jyotir-sinha",
+    "name": "Jyotir Sinha",
+    "email": "placeholder@example.com",
+    "image": "/members/jyotir-sinha.jpg"
+  },
+  {
+    "id": "keshav-jalan",
+    "name": "Keshav Jalan",
+    "email": "placeholder@example.com",
+    "image": "/members/keshav-jalan.jpg"
+  },
+  {
+    "id": "kian-nayar",
+    "name": "Kian Nayar",
+    "email": "placeholder@example.com",
+    "image": "/members/kian-nayar.jpg"
+  },
+  {
+    "id": "krtya-sunil",
+    "name": "Krtya Sunil",
+    "email": "placeholder@example.com",
+    "image": "/members/krtya-sunil.jpg"
+  },
+  {
+    "id": "kushal-alok-khetan",
+    "name": "Kushal Alok Khetan",
+    "email": "placeholder@example.com",
+    "image": "/members/kushal-alok-khetan.jpg"
+  },
+  {
+    "id": "lakshya-sharma",
+    "name": "Lakshya Sharma",
+    "email": "placeholder@example.com",
+    "image": "/members/lakshya-sharma.jpg"
+  },
+  {
+    "id": "laksshha-khanna",
+    "name": "Laksshha Khanna",
+    "email": "placeholder@example.com",
+    "image": "/members/laksshha-khanna.jpg"
+  },
+  {
+    "id": "mahir-shah",
+    "name": "Mahir Shah",
+    "email": "placeholder@example.com",
+    "image": "/members/mahir-shah.svg"
+  },
+  {
+    "id": "mishti",
+    "name": "Mishti",
+    "email": "placeholder@example.com",
+    "image": "/members/mishti.jpg"
+  },
+  {
+    "id": "nandini-kumbhat",
+    "name": "Nandini Kumbhat",
+    "email": "placeholder@example.com",
+    "image": "/members/nandini-kumbhat.jpg"
+  },
+  {
+    "id": "niket-nair",
+    "name": "Niket Nair",
+    "email": "placeholder@example.com",
+    "image": "/members/niket-nair.jpg"
+  },
+  {
+    "id": "nishant-jayade",
+    "name": "Nishant Jayade",
+    "email": "placeholder@example.com",
+    "image": "/members/nishant-jayade.svg"
+  },
+  {
+    "id": "pranav-ananthasubramanyam",
+    "name": "Pranav Ananthasubramanyam",
+    "email": "placeholder@example.com",
+    "image": "/members/pranav-ananthasubramanyam.jpg"
+  },
+  {
+    "id": "pulkit-agarwal",
+    "name": "Pulkit Agarwal",
+    "email": "placeholder@example.com",
+    "image": "/members/pulkit-agarwal.svg"
+  },
+  {
+    "id": "raghav-sharma",
+    "name": "Raghav Sharma",
+    "email": "placeholder@example.com",
+    "image": "/members/raghav-sharma.jpg"
+  },
+  {
+    "id": "rajit-mundhra",
+    "name": "Rajit Mundhra",
+    "email": "placeholder@example.com",
+    "image": "/members/rajit-mundhra.svg"
+  },
+  {
+    "id": "reva-agarwal",
+    "name": "Reva Agarwal",
+    "email": "placeholder@example.com",
+    "image": "/members/reva-agarwal.jpg"
+  },
+  {
+    "id": "revant-mehta",
+    "name": "Revant Mehta",
+    "email": "placeholder@example.com",
+    "image": "/members/revant-mehta.jpg"
+  },
+  {
+    "id": "reyanshi-kanoria",
+    "name": "Reyanshi Kanoria",
+    "email": "placeholder@example.com",
+    "image": "/members/reyanshi-kanoria.jpg"
+  },
+  {
+    "id": "riddhima-nagori",
+    "name": "Riddhima Nagori",
+    "email": "placeholder@example.com",
+    "image": "/members/riddhima-nagori.jpg"
+  },
+  {
+    "id": "saanvi-daga",
+    "name": "Saanvi Daga",
+    "email": "placeholder@example.com",
+    "image": "/members/saanvi-daga.jpg"
+  },
+  {
+    "id": "saloni-rego",
+    "name": "Saloni Rego",
+    "email": "placeholder@example.com",
+    "image": "/members/saloni-rego.svg"
+  },
+  {
+    "id": "sarvesh-soundararajan",
+    "name": "Sarvesh Soundararajan",
+    "email": "placeholder@example.com",
+    "image": "/members/sarvesh-soundararajan.jpg"
+  },
+  {
+    "id": "shagun-khetan",
+    "name": "Shagun Khetan",
+    "email": "placeholder@example.com",
+    "image": "/members/shagun-khetan.svg"
+  },
+  {
+    "id": "shourya-agarwal",
+    "name": "Shourya Agarwal",
+    "email": "placeholder@example.com",
+    "image": "/members/shourya-agarwal.svg"
+  },
+  {
+    "id": "shreevats-bindal",
+    "name": "Shreevats Bindal",
+    "email": "placeholder@example.com",
+    "image": "/members/shreevats-bindal.jpg"
+  },
+  {
+    "id": "shriyansh-dalmia",
+    "name": "Shriyansh Dalmia",
+    "email": "placeholder@example.com",
+    "image": "/members/shriyansh-dalmia.jpg"
+  },
+  {
+    "id": "srishti-singhi",
+    "name": "Srishti Singhi",
+    "email": "placeholder@example.com",
+    "image": "/members/srishti-singhi.jpg"
+  },
+  {
+    "id": "tanvee-jitendra",
+    "name": "Tanvee Jitendra",
+    "email": "placeholder@example.com",
+    "image": "/members/tanvee-jitendra.jpg"
+  },
+  {
+    "id": "tanya-mehra",
+    "name": "Tanya Mehra",
+    "email": "placeholder@example.com",
+    "image": "/members/tanya-mehra.jpg"
+  },
+  {
+    "id": "vaibhavi-kumari",
+    "name": "Vaibhavi Kumari",
+    "email": "placeholder@example.com",
+    "image": "/members/vaibhavi-kumari.jpg"
+  },
+  {
+    "id": "varnima-agarwal",
+    "name": "Varnima Agarwal",
+    "email": "placeholder@example.com",
+    "image": "/members/varnima-agarwal.jpg"
+  },
+  {
+    "id": "vedaant-wadhawan",
+    "name": "Vedaant Wadhawan",
+    "email": "placeholder@example.com",
+    "image": "/members/vedaant-wadhawan.svg"
+  },
+  {
+    "id": "vedika-tandon",
+    "name": "Vedika Tandon",
+    "email": "placeholder@example.com",
+    "image": "/members/vedika-tandon.jpg"
   }
 ]
