@@ -144,7 +144,7 @@ export default function OracleFull() {
             <div>
               <h1 className="text-base font-bold leading-tight" style={{ color: "var(--c-text)" }}>BODHI Oracle</h1>
               <p className="text-xs" style={{ color: "var(--c-text-3)" }}>
-                AI analyst · Gemini 2.5 Flash · Google Search grounded
+                AI analyst · Gemini 2.5 Flash-Lite · Google Search grounded
               </p>
             </div>
           </div>
@@ -343,7 +343,7 @@ export default function OracleFull() {
             </button>
           </div>
           <p className="text-center text-[10px] mt-2" style={{ color: "var(--c-text-4)" }}>
-            Powered by Gemini 2.5 Flash · Google Search grounded · Reads pitch PDFs
+            Powered by Gemini 2.5 Flash-Lite · Google Search grounded · Reads pitch PDFs
           </p>
         </div>
       </div>

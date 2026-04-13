@@ -12,7 +12,7 @@ import {
   off,
   DataSnapshot,
 } from "firebase/database";
-import { MessageSquare, Send, Zap, ChevronDown, X } from "lucide-react";
+import { MessageSquare, Send, Zap, X } from "lucide-react";
 
 interface Message {
   id: string;
@@ -52,6 +52,65 @@ export default function ThePit() {
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesRef = ref(db, "pit/messages");
 
+  // ── Notification refs ────────────────────────────────────────────────────
+  const seenIdsRef = useRef<Set<string>>(new Set());
+  const isInitialLoadRef = useRef(true);
+  const autoCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const manualOpenRef = useRef(false); // true if user explicitly opened the pit
+  const openRef = useRef(open);
+  useEffect(() => { openRef.current = open; }, [open]);
+
+  // Request notification permission once on mount
+  useEffect(() => {
+    if (typeof window !== "undefined" && "Notification" in window && Notification.permission === "default") {
+      Notification.requestPermission();
+    }
+  }, []);
+
+  // Watch for new messages → browser notification + auto-open
+  useEffect(() => {
+    if (isInitialLoadRef.current) {
+      // Mark all messages present on load as already seen — don't notify for them
+      messages.forEach((m) => seenIdsRef.current.add(m.id));
+      if (messages.length > 0) isInitialLoadRef.current = false;
+      return;
+    }
+
+    const newMsgs = messages.filter((m) => !seenIdsRef.current.has(m.id));
+    if (newMsgs.length === 0) return;
+    newMsgs.forEach((m) => seenIdsRef.current.add(m.id));
+
+    const latest = newMsgs[newMsgs.length - 1];
+
+    // ── Browser notification (fires even on a different Chrome tab) ──────
+    if (document.hidden && Notification.permission === "granted") {
+      const n = new Notification("The Pit 💬", {
+        body: latest.text,
+        icon: "/favicon.ico",
+        tag: "the-pit", // replaces previous notification instead of stacking
+        silent: false,
+      });
+      n.onclick = () => {
+        window.focus();
+        manualOpenRef.current = true;
+        setOpen(true);
+        n.close();
+      };
+    }
+
+    // ── Auto-open pit for 10s if closed (same-tab awareness) ────────────
+    if (!openRef.current) {
+      manualOpenRef.current = false;
+      setOpen(true);
+      if (autoCloseTimerRef.current) clearTimeout(autoCloseTimerRef.current);
+      autoCloseTimerRef.current = setTimeout(() => {
+        if (!manualOpenRef.current) setOpen(false);
+        autoCloseTimerRef.current = null;
+      }, 10_000);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [messages]);
+
   // Delete messages older than TTL
   const pruneOldMessages = useCallback(async (snapshot: DataSnapshot) => {
     const now = Date.now();
@@ -72,7 +131,7 @@ export default function ThePit() {
   useEffect(() => {
     const q = query(messagesRef, orderByChild("timestamp"));
 
-    const unsubscribe = onValue(q, (snapshot) => {
+    onValue(q, (snapshot) => {
       // Prune old messages
       pruneOldMessages(snapshot);
 
@@ -112,7 +171,7 @@ export default function ThePit() {
     }
   }, [open]);
 
-  const sendMessage = async (e: React.FormEvent) => {
+  const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const text = input.trim();
     if (!text || sending) return;
@@ -138,7 +197,11 @@ export default function ThePit() {
     <>
       {/* Floating toggle button */}
       <button
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          if (!open) manualOpenRef.current = true; // prevent auto-close if user opens manually
+          if (autoCloseTimerRef.current) { clearTimeout(autoCloseTimerRef.current); autoCloseTimerRef.current = null; }
+          setOpen(!open);
+        }}
         className="fixed bottom-5 right-5 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-semibold shadow-lg transition-all hover:scale-105 active:scale-95"
         style={{
           background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",

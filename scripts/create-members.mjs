@@ -28,7 +28,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 
 // ── Load service account ────────────────────────────────────────────────────
-const keyPath = join(__dirname, "serviceAccountKey.json");
+const keyPath = join(__dirname, "aicbodhi-firebase-adminsdk-fbsvc-02e2b67081.json");
 let serviceAccount;
 try {
   serviceAccount = JSON.parse(readFileSync(keyPath, "utf8"));
@@ -58,10 +58,10 @@ const auth = admin.auth();
 // ── Load members ────────────────────────────────────────────────────────────
 const members = JSON.parse(readFileSync(join(root, "data/members.json"), "utf8"));
 
-/** Derives password from member name: "Arnav Goyal" → "arnav.bodhi" */
+/** Derives password from member name: "Arnav Goyal" → "arnav@bodhi" */
 function memberPassword(name) {
   const firstName = name.trim().split(/\s+/)[0].toLowerCase();
-  return `${firstName}.bodhi`;
+  return `${firstName}@bodhi`;
 }
 
 const realMembers = members.filter(
