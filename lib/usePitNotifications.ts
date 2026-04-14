@@ -27,6 +27,9 @@ export function usePitNotifications() {
     if (typeof window === "undefined") return;
     const messaging = getMessaging(app);
     const unsub = onMessage(messaging, (payload) => {
+      // LOG E: onMessage fires when the PAGE is in foreground — if you see this
+      // while the tab is in background, FCM is wrongly routing to the page instead of SW
+      console.log('[PAGE LOG-E] onMessage fired (tab is foreground)', JSON.stringify(payload));
       const title = payload.notification?.title ?? "The Pit 💬";
       const body = payload.notification?.body ?? "";
       navigator.serviceWorker.ready.then((reg) => {

@@ -13,15 +13,28 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// Handle background messages (when tab is not in focus)
+// LOG A: Did the raw push event reach the SW at all?
+self.addEventListener('push', (event) => {
+  console.log('[SW LOG-A] Raw push event received', event.data ? event.data.text() : '(no data)');
+});
+
+// LOG B: Did Firebase intercept it and call onBackgroundMessage?
 messaging.onBackgroundMessage((payload) => {
+  console.log('[SW LOG-B] onBackgroundMessage fired', JSON.stringify(payload));
   const title = payload.notification?.title ?? "The Pit 💬";
   const body  = payload.notification?.body  ?? "";
+  // LOG C: Are we actually reaching showNotification?
+  console.log('[SW LOG-C] Calling showNotification with title:', title, 'body:', body);
   return self.registration.showNotification(title, {
     body,
     icon: "/bodhi.png",
     tag: "the-pit",
     badge: "/bodhi.png",
+  }).then(() => {
+    // LOG D: Did showNotification resolve successfully?
+    console.log('[SW LOG-D] showNotification resolved OK');
+  }).catch((err) => {
+    console.error('[SW LOG-D] showNotification FAILED', err);
   });
 });
 
