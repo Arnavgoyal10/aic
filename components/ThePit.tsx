@@ -65,6 +65,9 @@ export default function ThePit() {
   useEffect(() => {
     if (typeof window !== "undefined" && "Notification" in window) {
       setNotifPermission(Notification.permission);
+      if (Notification.permission === "default") {
+        Notification.requestPermission().then(setNotifPermission);
+      }
     }
   }, []);
 

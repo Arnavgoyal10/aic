@@ -5,7 +5,7 @@ import { db } from "@/lib/firebase";
 import {
   ref, push, onValue, remove, query, orderByChild, off, DataSnapshot,
 } from "firebase/database";
-import { MessageSquare, Send, Zap } from "lucide-react";
+import { MessageSquare, Send, Zap, Bell, BellOff } from "lucide-react";
 
 interface Message {
   id: string;
@@ -29,9 +29,47 @@ export default function PitFull() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
+  const [notifPermission, setNotifPermission] = useState<NotificationPermission | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesRef = ref(db, "pit/messages");
+  const seenIdsRef = useRef<Set<string>>(new Set());
+  const firstSnapshotDoneRef = useRef(false);
+
+  // Read current notification permission (browser only)
+  useEffect(() => {
+    if (typeof window !== "undefined" && "Notification" in window) {
+      setNotifPermission(Notification.permission);
+      // Auto-request on load if not yet decided
+      if (Notification.permission === "default") {
+        Notification.requestPermission().then(setNotifPermission);
+      }
+    }
+  }, []);
+
+  const requestNotifPermission = async () => {
+    if (!("Notification" in window)) return;
+    const result = await Notification.requestPermission();
+    setNotifPermission(result);
+  };
+
+  // Fire notification for new messages
+  useEffect(() => {
+    if (!firstSnapshotDoneRef.current) return;
+    const newMsgs = messages.filter((m) => !seenIdsRef.current.has(m.id));
+    if (newMsgs.length === 0) return;
+    newMsgs.forEach((m) => seenIdsRef.current.add(m.id));
+    const latest = newMsgs[newMsgs.length - 1];
+    if (document.hidden && Notification.permission === "granted") {
+      const n = new Notification("The Pit 💬", {
+        body: latest.text,
+        icon: "/favicon.ico",
+        tag: "the-pit",
+      });
+      n.onclick = () => { window.focus(); n.close(); };
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [messages]);
 
   const pruneOldMessages = useCallback(async (snapshot: DataSnapshot) => {
     const now = Date.now();
@@ -47,7 +85,7 @@ export default function PitFull() {
 
   useEffect(() => {
     const q = query(messagesRef, orderByChild("timestamp"));
-    const unsubscribe = onValue(q, (snapshot) => {
+    onValue(q, (snapshot) => {
       pruneOldMessages(snapshot);
       const msgs: Message[] = [];
       snapshot.forEach((child) => {
@@ -56,6 +94,10 @@ export default function PitFull() {
           msgs.push({ id: child.key as string, ...data });
         }
       });
+      if (!firstSnapshotDoneRef.current) {
+        msgs.forEach((m) => seenIdsRef.current.add(m.id));
+        firstSnapshotDoneRef.current = true;
+      }
       setMessages(msgs);
     });
     const interval = setInterval(() => {
@@ -106,6 +148,23 @@ export default function PitFull() {
           </div>
         </div>
         <div className="flex items-center gap-3">
+          {notifPermission !== null && notifPermission !== "granted" && (
+            <button
+              onClick={requestNotifPermission}
+              disabled={notifPermission === "denied"}
+              title={notifPermission === "denied" ? "Notifications blocked — reset in browser settings" : "Enable notifications for new messages"}
+              className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg font-medium transition-all"
+              style={{
+                background: notifPermission === "denied" ? "var(--c-border-subtle)" : "#fef3c7",
+                color: notifPermission === "denied" ? "var(--c-text-3)" : "#92400e",
+                border: `1px solid ${notifPermission === "denied" ? "var(--c-border)" : "#fcd34d"}`,
+                cursor: notifPermission === "denied" ? "not-allowed" : "pointer",
+              }}
+            >
+              {notifPermission === "denied" ? <BellOff className="w-3.5 h-3.5" /> : <Bell className="w-3.5 h-3.5" />}
+              {notifPermission === "denied" ? "Notifications blocked" : "Enable notifications"}
+            </button>
+          )}
           <div className="flex items-center gap-1.5">
             <div className="w-2 h-2 rounded-full bg-[#16a34a] animate-pulse" />
             <span className="text-xs font-medium" style={{ color: "var(--c-text-3)" }}>Live</span>
