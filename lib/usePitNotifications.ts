@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react";
+import { getMessaging, getToken } from "firebase/messaging";
+import { ref, set } from "firebase/database";
+import { app, db } from "@/lib/firebase";
+
+const VAPID_KEY = "BJ2DI3Xy8HEfn3HMz3aYWpEpDYYgWx15-kuV4Y4c4bYQF8yeKNJakom8CdIZrDLm4PQmPrCMMQb5jBCObNM78Gg";
 
 export function usePitNotifications() {
   const [permission, setPermission] = useState<NotificationPermission | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined" || !("Notification" in window)) return;
-
     setPermission(Notification.permission);
 
-    // Register service worker (needed for showNotification to work in background)
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").catch(() => {});
-    }
-
-    // Auto-request if not yet decided
-    if (Notification.permission === "default") {
-      Notification.requestPermission().then((p) => setPermission(p));
+    if (Notification.permission === "granted") {
+      registerFCMToken();
+    } else if (Notification.permission === "default") {
+      Notification.requestPermission().then((p) => {
+        setPermission(p);
+        if (p === "granted") registerFCMToken();
+      });
     }
   }, []);
 
@@ -23,24 +26,22 @@ export function usePitNotifications() {
     if (!("Notification" in window)) return;
     const p = await Notification.requestPermission();
     setPermission(p);
+    if (p === "granted") registerFCMToken();
   };
 
-  const notify = (title: string, body: string) => {
-    if (Notification.permission !== "granted") return;
+  return { permission, requestPermission };
+}
 
-    if ("serviceWorker" in navigator) {
-      // navigator.serviceWorker.ready resolves once the SW is active —
-      // showNotification() via SW works reliably even when the tab is backgrounded
-      navigator.serviceWorker.ready
-        .then((reg) => reg.showNotification(title, { body, icon: "/bodhi.png", tag: "the-pit" }))
-        .catch(() => {
-          // SW failed — fall back to plain Notification
-          new Notification(title, { body, icon: "/bodhi.png", tag: "the-pit" });
-        });
-    } else {
-      new Notification(title, { body, icon: "/bodhi.png", tag: "the-pit" });
-    }
-  };
-
-  return { permission, requestPermission, notify };
+async function registerFCMToken() {
+  try {
+    const sw = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
+    const messaging = getMessaging(app);
+    const token = await getToken(messaging, { vapidKey: VAPID_KEY, serviceWorkerRegistration: sw });
+    if (!token) return;
+    // Use last 20 chars as DB key (tokens contain invalid chars)
+    const key = token.slice(-20).replace(/[.#$[\]]/g, "_");
+    await set(ref(db, `pit/fcm_tokens/${key}`), { token, ts: Date.now() });
+  } catch (err) {
+    console.error("[FCM] token registration failed:", err);
+  }
 }

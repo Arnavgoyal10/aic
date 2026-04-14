@@ -52,9 +52,9 @@ export default function ThePit() {
   const openRef = useRef(open);
   useEffect(() => { openRef.current = open; }, [open]);
 
-  const { permission: notifPermission, requestPermission: requestNotifPermission, notify } = usePitNotifications();
+  const { permission: notifPermission, requestPermission: requestNotifPermission } = usePitNotifications();
 
-  // Watch for new messages → service worker notification + auto-open
+  // Watch for new messages → FCM notification + auto-open
   useEffect(() => {
     if (!firstSnapshotDoneRef.current) return;
 
@@ -63,7 +63,11 @@ export default function ThePit() {
     newMsgs.forEach((m) => seenIdsRef.current.add(m.id));
 
     const latest = newMsgs[newMsgs.length - 1];
-    notify("The Pit 💬", latest.text);
+    fetch("/api/pit/notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: latest.text }),
+    }).catch(() => {});
 
     if (!openRef.current) {
       manualOpenRef.current = false;

@@ -30,21 +30,25 @@ export default function PitFull() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
-  const { permission: notifPermission, requestPermission: requestNotifPermission, notify } = usePitNotifications();
+  const { permission: notifPermission, requestPermission: requestNotifPermission } = usePitNotifications();
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesRef = ref(db, "pit/messages");
   const seenIdsRef = useRef<Set<string>>(new Set());
   const firstSnapshotDoneRef = useRef(false);
 
-  // Fire service worker notification for new messages
+  // Fire FCM notification for new messages
   useEffect(() => {
     if (!firstSnapshotDoneRef.current) return;
     const newMsgs = messages.filter((m) => !seenIdsRef.current.has(m.id));
     if (newMsgs.length === 0) return;
     newMsgs.forEach((m) => seenIdsRef.current.add(m.id));
     const latest = newMsgs[newMsgs.length - 1];
-    notify("The Pit 💬", latest.text);
+    fetch("/api/pit/notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: latest.text }),
+    }).catch(() => {});
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
