@@ -8,7 +8,7 @@ import { useDark } from "@/lib/DarkModeContext";
 import members from "@/data/members.json";
 import ThePit from "./ThePit";
 import OracleChat from "./OracleChat";
-import { TrendingUp, LogOut, BarChart2, MessageSquare, Sparkles, Sun, Moon, LayoutDashboard } from "lucide-react";
+import { LogOut, BarChart2, MessageSquare, Sparkles, Sun, Moon, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 
 function deleteCookie(name: string) {
@@ -73,11 +73,8 @@ export default function SidebarWrapper({ children }: { children: React.ReactNode
         <div className="px-5 py-5" style={{ borderBottom: "1px solid var(--c-border)" }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ background: "var(--c-green-bg)", border: "1px solid var(--c-green-border)" }}
-              >
-                <TrendingUp className="w-4 h-4" style={{ color: AIC_GREEN }} strokeWidth={2.5} />
+              <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0">
+                <img src="/bodhi.png" alt="BODHI" className="w-full h-full object-contain" />
               </div>
               <div>
                 <p className="text-sm font-bold leading-none" style={{ color: "var(--c-text)" }}>BODHI</p>

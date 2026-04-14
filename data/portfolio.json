@@ -1,0 +1,195 @@
+{
+    "portfolio": [
+        {
+            "sector": "Banks",
+            "holdings": [
+                {
+                    "stockSymbol": "HDFBAN",
+                    "totalQty": 2,
+                    "qtyHeldGt1Yr": 1,
+                    "avgCostPrice": 824.59,
+                    "cmp": 794.70,
+                    "percentChange": -1.93,
+                    "valueAtCost": 1649.18,
+                    "valueAtCmp": 1589.40,
+                    "realizedPnL": 0.00,
+                    "unrealizedDaysPnL": -31.20,
+                    "unrealizedOverallPnL": -59.78,
+                    "profitLossPercent": -3.62
+                }
+            ],
+            "subTotal": {
+                "valueAtCost": 1649.18,
+                "valueAtCmp": 1589.40,
+                "realizedPnL": 0.00,
+                "unrealizedDaysPnL": -31.20,
+                "unrealizedOverallPnL": -59.78
+            }
+        },
+        {
+            "sector": "Engineering/Capital Goods",
+            "holdings": [
+                {
+                    "stockSymbol": "JASENG",
+                    "totalQty": 97,
+                    "qtyHeldGt1Yr": 85,
+                    "avgCostPrice": 552.59,
+                    "cmp": 385.70,
+                    "percentChange": -4.21,
+                    "valueAtCost": 53601.23,
+                    "valueAtCmp": 37412.90,
+                    "realizedPnL": 0.00,
+                    "unrealizedDaysPnL": -1644.15,
+                    "unrealizedOverallPnL": -16188.33,
+                    "profitLossPercent": -30.20
+                }
+            ],
+            "subTotal": {
+                "valueAtCost": 53601.23,
+                "valueAtCmp": 37412.90,
+                "realizedPnL": 0.00,
+                "unrealizedDaysPnL": -1644.15,
+                "unrealizedOverallPnL": -16188.33
+            }
+        },
+        {
+            "sector": "Information Technology",
+            "holdings": [
+                {
+                    "stockSymbol": "CMSIN",
+                    "totalQty": 92,
+                    "qtyHeldGt1Yr": 32,
+                    "avgCostPrice": 458.58,
+                    "cmp": 306.00,
+                    "percentChange": 2.48,
+                    "valueAtCost": 42189.36,
+                    "valueAtCmp": 28152.00,
+                    "realizedPnL": 0.00,
+                    "unrealizedDaysPnL": 680.80,
+                    "unrealizedOverallPnL": -14037.36,
+                    "profitLossPercent": -33.27
+                }
+            ],
+            "subTotal": {
+                "valueAtCost": 42189.36,
+                "valueAtCmp": 28152.00,
+                "realizedPnL": 0.00,
+                "unrealizedDaysPnL": 680.80,
+                "unrealizedOverallPnL": -14037.36
+            }
+        },
+        {
+            "sector": "Pharma & Healthcare",
+            "holdings": [
+                {
+                    "stockSymbol": "LAULAB",
+                    "totalQty": 195,
+                    "qtyHeldGt1Yr": 60,
+                    "avgCostPrice": 612.91,
+                    "cmp": 1087.80,
+                    "percentChange": -0.96,
+                    "valueAtCost": 119517.45,
+                    "valueAtCmp": 212121.00,
+                    "realizedPnL": 0.00,
+                    "unrealizedDaysPnL": -2057.25,
+                    "unrealizedOverallPnL": 92603.55,
+                    "profitLossPercent": 77.48
+                },
+                {
+                    "stockSymbol": "NARHRU",
+                    "totalQty": 11,
+                    "qtyHeldGt1Yr": 11,
+                    "avgCostPrice": 1348.22,
+                    "cmp": 1768.30,
+                    "percentChange": 0.76,
+                    "valueAtCost": 14830.42,
+                    "valueAtCmp": 19451.30,
+                    "realizedPnL": 0.00,
+                    "unrealizedDaysPnL": 147.40,
+                    "unrealizedOverallPnL": 4620.88,
+                    "profitLossPercent": 31.16
+                },
+                {
+                    "stockSymbol": "NATPHA",
+                    "totalQty": 98,
+                    "qtyHeldGt1Yr": 96,
+                    "avgCostPrice": 972.44,
+                    "cmp": 1077.25,
+                    "percentChange": -2.44,
+                    "valueAtCost": 95299.12,
+                    "valueAtCmp": 105570.50,
+                    "realizedPnL": 0.00,
+                    "unrealizedDaysPnL": -2641.10,
+                    "unrealizedOverallPnL": 10271.38,
+                    "profitLossPercent": 10.78
+                }
+            ],
+            "subTotal": {
+                "valueAtCost": 229646.99,
+                "valueAtCmp": 337142.80,
+                "realizedPnL": 0.00,
+                "unrealizedDaysPnL": -4550.95,
+                "unrealizedOverallPnL": 107495.81
+            }
+        },
+        {
+            "sector": "Refineries/Oil-Gas",
+            "holdings": [
+                {
+                    "stockSymbol": "INDGAS",
+                    "totalQty": 102,
+                    "qtyHeldGt1Yr": 102,
+                    "avgCostPrice": 204.31,
+                    "cmp": 162.25,
+                    "percentChange": 0.57,
+                    "valueAtCost": 20839.62,
+                    "valueAtCmp": 16549.50,
+                    "realizedPnL": 0.00,
+                    "unrealizedDaysPnL": 93.84,
+                    "unrealizedOverallPnL": -4290.12,
+                    "profitLossPercent": -20.59
+                }
+            ],
+            "subTotal": {
+                "valueAtCost": 20839.62,
+                "valueAtCmp": 16549.50,
+                "realizedPnL": 0.00,
+                "unrealizedDaysPnL": 93.84,
+                "unrealizedOverallPnL": -4290.12
+            }
+        },
+        {
+            "sector": "Trading",
+            "holdings": [
+                {
+                    "stockSymbol": "REDIND",
+                    "totalQty": 241,
+                    "qtyHeldGt1Yr": 206,
+                    "avgCostPrice": 221.63,
+                    "cmp": 218.54,
+                    "percentChange": -1.19,
+                    "valueAtCost": 53412.83,
+                    "valueAtCmp": 52668.14,
+                    "realizedPnL": 0.00,
+                    "unrealizedDaysPnL": -636.24,
+                    "unrealizedOverallPnL": -744.69,
+                    "profitLossPercent": -1.39
+                }
+            ],
+            "subTotal": {
+                "valueAtCost": 53412.83,
+                "valueAtCmp": 52668.14,
+                "realizedPnL": 0.00,
+                "unrealizedDaysPnL": -636.24,
+                "unrealizedOverallPnL": -744.69
+            }
+        }
+    ],
+    "grandTotal": {
+        "valueAtCost": 401339.21,
+        "valueAtCmp": 473514.74,
+        "realizedPnL": 0.00,
+        "unrealizedDaysPnL": -6087.90,
+        "unrealizedOverallPnL": 72175.53
+    }
+}

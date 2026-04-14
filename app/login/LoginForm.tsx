@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import members from "@/data/members.json";
-import { TrendingUp, Lock, Eye, EyeOff, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Lock, Eye, EyeOff, AlertCircle, CheckCircle2 } from "lucide-react";
 
 function setCookie(name: string, value: string, days = 7) {
   if (typeof document !== "undefined") {
@@ -97,8 +97,8 @@ export default function LoginForm() {
 
       <div className="relative z-10 w-full max-w-md mx-4">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#f0fdf4] border border-[#bbf7d0] mb-4">
-            <TrendingUp className="w-7 h-7 text-[#16a34a]" strokeWidth={2} />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#f0fdf4] border border-[#bbf7d0] mb-4 overflow-hidden">
+            <img src="/bodhi.png" alt="BODHI" className="w-10 h-10 object-contain" />
           </div>
           <h1 className="text-2xl font-semibold tracking-tight text-[#0f172a]">
             BODHI Capital

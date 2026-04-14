@@ -5,6 +5,7 @@ import membersData from "@/data/members.json";
 import pitchesData from "@/data/pitches.json";
 import MemberGuard from "@/components/MemberGuard";
 import PitchDashboard from "@/components/PitchDashboard";
+import FundSnapshot from "@/components/FundSnapshot";
 
 export async function generateStaticParams() {
   return membersData.map((m) => ({ memberId: m.id }));
@@ -74,6 +75,9 @@ export default async function MemberPage({ params }: PageProps) {
           pitches={pitchesData}
           alphas={alphas}
         />
+
+        {/* ── Fund portfolio snapshot ──────────────────────── */}
+        <FundSnapshot />
       </div>
     </MemberGuard>
   );
