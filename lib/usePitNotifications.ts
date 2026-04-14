@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { ref, set } from "firebase/database";
 import { app, db } from "@/lib/firebase";
 
@@ -20,6 +20,20 @@ export function usePitNotifications() {
         if (p === "granted") registerFCMToken();
       });
     }
+  }, []);
+
+  // Handle messages when the tab is open (Firebase routes to onMessage, not SW)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const messaging = getMessaging(app);
+    const unsub = onMessage(messaging, (payload) => {
+      const title = payload.notification?.title ?? "The Pit 💬";
+      const body = payload.notification?.body ?? "";
+      navigator.serviceWorker.ready.then((reg) => {
+        reg.showNotification(title, { body, icon: "/bodhi.png", tag: "the-pit" });
+      });
+    });
+    return unsub;
   }, []);
 
   const requestPermission = async () => {
