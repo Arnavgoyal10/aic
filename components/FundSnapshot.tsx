@@ -165,7 +165,7 @@ export default function FundSnapshot() {
                 )}
               />
               <Tooltip
-                formatter={(value: number) => [fmt(value), "Value"]}
+                formatter={(value) => [fmt(Number(value)), "Value"]}
                 contentStyle={{
                   background: "var(--c-surface-raised)",
                   border: "1px solid var(--c-border)",
