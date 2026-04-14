@@ -7,17 +7,18 @@ const VAPID_KEY = "BJ2DI3Xy8HEfn3HMz3aYWpEpDYYgWx15-kuV4Y4c4bYQF8yeKNJakom8CdIZr
 
 export function usePitNotifications() {
   const [permission, setPermission] = useState<NotificationPermission | null>(null);
+  const [myToken, setMyToken] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined" || !("Notification" in window)) return;
     setPermission(Notification.permission);
 
     if (Notification.permission === "granted") {
-      registerFCMToken();
+      registerFCMToken().then((t) => setMyToken(t ?? null));
     } else if (Notification.permission === "default") {
       Notification.requestPermission().then((p) => {
         setPermission(p);
-        if (p === "granted") registerFCMToken();
+        if (p === "granted") registerFCMToken().then((t) => setMyToken(t ?? null));
       });
     }
   }, []);
@@ -40,22 +41,24 @@ export function usePitNotifications() {
     if (!("Notification" in window)) return;
     const p = await Notification.requestPermission();
     setPermission(p);
-    if (p === "granted") registerFCMToken();
+    if (p === "granted") registerFCMToken().then((t) => setMyToken(t ?? null));
   };
 
-  return { permission, requestPermission };
+  return { permission, requestPermission, myToken };
 }
 
-async function registerFCMToken() {
+async function registerFCMToken(): Promise<string | undefined> {
   try {
     const sw = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
     const messaging = getMessaging(app);
     const token = await getToken(messaging, { vapidKey: VAPID_KEY, serviceWorkerRegistration: sw });
-    if (!token) return;
+    if (!token) return undefined;
     // Use last 20 chars as DB key (tokens contain invalid chars)
     const key = token.slice(-20).replace(/[.#$[\]]/g, "_");
     await set(ref(db, `pit/fcm_tokens/${key}`), { token, ts: Date.now() });
+    return token;
   } catch (err) {
     console.error("[FCM] token registration failed:", err);
+    return undefined;
   }
 }

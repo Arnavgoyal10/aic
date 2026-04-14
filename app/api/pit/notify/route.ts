@@ -3,7 +3,7 @@ import admin from "@/lib/firebaseAdmin";
 
 export async function POST(request: NextRequest) {
   try {
-    const { message } = await request.json();
+    const { message, senderToken } = await request.json();
     if (!message) return Response.json({ sent: 0 });
 
     const db = admin.database();
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     const keyMap: Record<string, string> = {}; // token → db key
     snapshot.forEach((child) => {
       const data = child.val();
-      if (data?.token) {
+      if (data?.token && data.token !== senderToken) {
         tokens.push(data.token);
         keyMap[data.token] = child.key as string;
       }

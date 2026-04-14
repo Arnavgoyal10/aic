@@ -30,7 +30,7 @@ export default function PitFull() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
-  const { permission: notifPermission, requestPermission: requestNotifPermission } = usePitNotifications();
+  const { permission: notifPermission, requestPermission: requestNotifPermission, myToken } = usePitNotifications();
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesRef = ref(db, "pit/messages");
@@ -86,7 +86,7 @@ export default function PitFull() {
       fetch("/api/pit/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ message: text, senderToken: myToken }),
       }).catch(() => {});
     } finally {
       setSending(false);

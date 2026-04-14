@@ -32,7 +32,7 @@ export default function OracleFull() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [selectedIds, setSelectedIds] = useState<string[]>(pitches.map((p) => p.id));
+  const [selectedIds, setSelectedIds] = useState<string[]>(["interarch"]);
   const [showFilter, setShowFilter] = useState(false);
 
   const bottomRef = useRef<HTMLDivElement>(null);
