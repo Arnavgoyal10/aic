@@ -12,7 +12,7 @@ import {
   off,
   DataSnapshot,
 } from "firebase/database";
-import { MessageSquare, Send, Zap, X } from "lucide-react";
+import { MessageSquare, Send, Zap, X, Bell, BellOff } from "lucide-react";
 
 interface Message {
   id: string;
@@ -54,27 +54,31 @@ export default function ThePit() {
 
   // ── Notification refs ────────────────────────────────────────────────────
   const seenIdsRef = useRef<Set<string>>(new Set());
-  const isInitialLoadRef = useRef(true);
+  const firstSnapshotDoneRef = useRef(false); // set to true after first Firebase snapshot
   const autoCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const manualOpenRef = useRef(false); // true if user explicitly opened the pit
+  const manualOpenRef = useRef(false);
   const openRef = useRef(open);
   useEffect(() => { openRef.current = open; }, [open]);
 
-  // Request notification permission once on mount
+  const [notifPermission, setNotifPermission] = useState<NotificationPermission>("default");
+
   useEffect(() => {
-    if (typeof window !== "undefined" && "Notification" in window && Notification.permission === "default") {
-      Notification.requestPermission();
+    if (typeof window !== "undefined" && "Notification" in window) {
+      setNotifPermission(Notification.permission);
     }
   }, []);
 
+  const requestNotifPermission = async () => {
+    if (!("Notification" in window)) return;
+    const result = await Notification.requestPermission();
+    setNotifPermission(result);
+  };
+
   // Watch for new messages → browser notification + auto-open
+  // NOTE: seenIdsRef is populated inside the Firebase onValue handler (below)
+  // so by the time this effect runs for real updates, initial messages are already marked seen.
   useEffect(() => {
-    if (isInitialLoadRef.current) {
-      // Mark all messages present on load as already seen — don't notify for them
-      messages.forEach((m) => seenIdsRef.current.add(m.id));
-      if (messages.length > 0) isInitialLoadRef.current = false;
-      return;
-    }
+    if (!firstSnapshotDoneRef.current) return; // wait until initial snapshot processed
 
     const newMsgs = messages.filter((m) => !seenIdsRef.current.has(m.id));
     if (newMsgs.length === 0) return;
@@ -87,7 +91,7 @@ export default function ThePit() {
       const n = new Notification("The Pit 💬", {
         body: latest.text,
         icon: "/favicon.ico",
-        tag: "the-pit", // replaces previous notification instead of stacking
+        tag: "the-pit",
         silent: false,
       });
       n.onclick = () => {
@@ -132,7 +136,6 @@ export default function ThePit() {
     const q = query(messagesRef, orderByChild("timestamp"));
 
     onValue(q, (snapshot) => {
-      // Prune old messages
       pruneOldMessages(snapshot);
 
       const msgs: Message[] = [];
@@ -143,6 +146,13 @@ export default function ThePit() {
           msgs.push({ id: child.key as string, ...data });
         }
       });
+
+      // First snapshot: mark all existing messages as seen so we don't notify for them
+      if (!firstSnapshotDoneRef.current) {
+        msgs.forEach((m) => seenIdsRef.current.add(m.id));
+        firstSnapshotDoneRef.current = true;
+      }
+
       setMessages(msgs);
     });
 
@@ -255,9 +265,21 @@ export default function ThePit() {
                 <p className="text-xs text-slate-400">Anonymous · Ephemeral</p>
               </div>
             </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#16a34a] animate-pulse" />
-              <span className="text-xs text-slate-400">Live</span>
+            <div className="flex items-center gap-2">
+              {"Notification" in window && notifPermission !== "granted" && (
+                <button
+                  onClick={requestNotifPermission}
+                  title="Enable notifications"
+                  className="flex items-center gap-1 text-[10px] px-2 py-1 rounded-lg text-amber-600 hover:bg-amber-50 transition-colors"
+                >
+                  {notifPermission === "denied" ? <BellOff className="w-3 h-3" /> : <Bell className="w-3 h-3" />}
+                  {notifPermission === "denied" ? "Blocked" : "Allow alerts"}
+                </button>
+              )}
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#16a34a] animate-pulse" />
+                <span className="text-xs text-slate-400">Live</span>
+              </div>
             </div>
           </div>
 
