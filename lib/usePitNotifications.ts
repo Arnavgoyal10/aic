@@ -1,19 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function usePitNotifications() {
   const [permission, setPermission] = useState<NotificationPermission | null>(null);
-  const swRegRef = useRef<ServiceWorkerRegistration | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined" || !("Notification" in window)) return;
 
     setPermission(Notification.permission);
 
-    // Register service worker
+    // Register service worker (needed for showNotification to work in background)
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").then((reg) => {
-        swRegRef.current = reg;
-      }).catch(() => {});
+      navigator.serviceWorker.register("/sw.js").catch(() => {});
     }
 
     // Auto-request if not yet decided
@@ -30,15 +27,17 @@ export function usePitNotifications() {
 
   const notify = (title: string, body: string) => {
     if (Notification.permission !== "granted") return;
-    // Use service worker notification — works even when tab is backgrounded
-    if (swRegRef.current) {
-      swRegRef.current.showNotification(title, {
-        body,
-        icon: "/bodhi.png",
-        tag: "the-pit",
-      });
+
+    if ("serviceWorker" in navigator) {
+      // navigator.serviceWorker.ready resolves once the SW is active —
+      // showNotification() via SW works reliably even when the tab is backgrounded
+      navigator.serviceWorker.ready
+        .then((reg) => reg.showNotification(title, { body, icon: "/bodhi.png", tag: "the-pit" }))
+        .catch(() => {
+          // SW failed — fall back to plain Notification
+          new Notification(title, { body, icon: "/bodhi.png", tag: "the-pit" });
+        });
     } else {
-      // Fallback
       new Notification(title, { body, icon: "/bodhi.png", tag: "the-pit" });
     }
   };
