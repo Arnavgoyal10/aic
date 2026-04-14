@@ -10,6 +10,11 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 export const metadata: Metadata = {
   title: "BODHI Capital · Member Portal",
   description: "Internal portal for BODHI Capital investment club members.",
+  icons: {
+    icon: "/bodhi.png",
+    apple: "/bodhi.png",
+  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
