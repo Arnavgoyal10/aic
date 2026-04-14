@@ -34,23 +34,7 @@ export default function PitFull() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesRef = ref(db, "pit/messages");
-  const seenIdsRef = useRef<Set<string>>(new Set());
-  const firstSnapshotDoneRef = useRef(false);
 
-  // Fire FCM notification for new messages
-  useEffect(() => {
-    if (!firstSnapshotDoneRef.current) return;
-    const newMsgs = messages.filter((m) => !seenIdsRef.current.has(m.id));
-    if (newMsgs.length === 0) return;
-    newMsgs.forEach((m) => seenIdsRef.current.add(m.id));
-    const latest = newMsgs[newMsgs.length - 1];
-    fetch("/api/pit/notify", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: latest.text }),
-    }).catch(() => {});
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [messages]);
 
   const pruneOldMessages = useCallback(async (snapshot: DataSnapshot) => {
     const now = Date.now();
@@ -75,10 +59,6 @@ export default function PitFull() {
           msgs.push({ id: child.key as string, ...data });
         }
       });
-      if (!firstSnapshotDoneRef.current) {
-        msgs.forEach((m) => seenIdsRef.current.add(m.id));
-        firstSnapshotDoneRef.current = true;
-      }
       setMessages(msgs);
     });
     const interval = setInterval(() => {
@@ -103,6 +83,11 @@ export default function PitFull() {
     setInput("");
     try {
       await push(messagesRef, { text, timestamp: Date.now(), accent: randomAccent() });
+      fetch("/api/pit/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text }),
+      }).catch(() => {});
     } finally {
       setSending(false);
       inputRef.current?.focus();
