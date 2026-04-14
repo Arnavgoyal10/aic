@@ -60,7 +60,7 @@ export default function PitFull() {
     if (newMsgs.length === 0) return;
     newMsgs.forEach((m) => seenIdsRef.current.add(m.id));
     const latest = newMsgs[newMsgs.length - 1];
-    if (document.hidden && Notification.permission === "granted") {
+    if (Notification.permission === "granted") {
       const n = new Notification("The Pit 💬", {
         body: latest.text,
         icon: "/favicon.ico",

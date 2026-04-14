@@ -90,7 +90,7 @@ export default function ThePit() {
     const latest = newMsgs[newMsgs.length - 1];
 
     // ── Browser notification (fires even on a different Chrome tab) ──────
-    if (document.hidden && Notification.permission === "granted") {
+    if (Notification.permission === "granted") {
       const n = new Notification("The Pit 💬", {
         body: latest.text,
         icon: "/favicon.ico",
