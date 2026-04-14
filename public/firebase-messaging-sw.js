@@ -1,5 +1,5 @@
-importScripts('https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/10.0.0/firebase-messaging-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/12.11.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/12.11.0/firebase-messaging-compat.js');
 
 firebase.initializeApp({
   apiKey: "AIzaSyDxEFcbgZgQc-Ufe3AXj_mjevvo20mIe8M",
@@ -17,7 +17,7 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
   const title = payload.notification?.title ?? "The Pit 💬";
   const body  = payload.notification?.body  ?? "";
-  self.registration.showNotification(title, {
+  return self.registration.showNotification(title, {
     body,
     icon: "/bodhi.png",
     tag: "the-pit",
