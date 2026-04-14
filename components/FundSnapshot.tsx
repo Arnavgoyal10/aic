@@ -28,9 +28,10 @@ function pct(n: number) {
 // ── Donut label ──────────────────────────────────────────────────────────────
 const RADIAN = Math.PI / 180;
 function DonutLabel({ cx, cy, midAngle, innerRadius, outerRadius, percent }: {
-  cx: number; cy: number; midAngle: number;
-  innerRadius: number; outerRadius: number; percent: number;
+  cx?: number; cy?: number; midAngle?: number;
+  innerRadius?: number; outerRadius?: number; percent?: number;
 }) {
+  if (!cx || !cy || midAngle == null || !innerRadius || !outerRadius || !percent) return null;
   if (percent < 0.05) return null;
   const r = innerRadius + (outerRadius - innerRadius) * 0.55;
   const x = cx + r * Math.cos(-midAngle * RADIAN);
