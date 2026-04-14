@@ -60,7 +60,7 @@ export default function ThePit() {
   const openRef = useRef(open);
   useEffect(() => { openRef.current = open; }, [open]);
 
-  const [notifPermission, setNotifPermission] = useState<NotificationPermission>("default");
+  const [notifPermission, setNotifPermission] = useState<NotificationPermission | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined" && "Notification" in window) {
@@ -266,7 +266,7 @@ export default function ThePit() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              {"Notification" in window && notifPermission !== "granted" && (
+              {notifPermission !== null && notifPermission !== "granted" && (
                 <button
                   onClick={requestNotifPermission}
                   title="Enable notifications"
