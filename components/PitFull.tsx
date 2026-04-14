@@ -6,6 +6,7 @@ import {
   ref, push, onValue, remove, query, orderByChild, off, DataSnapshot,
 } from "firebase/database";
 import { MessageSquare, Send, Zap, Bell, BellOff } from "lucide-react";
+import { usePitNotifications } from "@/lib/usePitNotifications";
 
 interface Message {
   id: string;
@@ -29,45 +30,21 @@ export default function PitFull() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
-  const [notifPermission, setNotifPermission] = useState<NotificationPermission | null>(null);
+  const { permission: notifPermission, requestPermission: requestNotifPermission, notify } = usePitNotifications();
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesRef = ref(db, "pit/messages");
   const seenIdsRef = useRef<Set<string>>(new Set());
   const firstSnapshotDoneRef = useRef(false);
 
-  // Read current notification permission (browser only)
-  useEffect(() => {
-    if (typeof window !== "undefined" && "Notification" in window) {
-      setNotifPermission(Notification.permission);
-      // Auto-request on load if not yet decided
-      if (Notification.permission === "default") {
-        Notification.requestPermission().then(setNotifPermission);
-      }
-    }
-  }, []);
-
-  const requestNotifPermission = async () => {
-    if (!("Notification" in window)) return;
-    const result = await Notification.requestPermission();
-    setNotifPermission(result);
-  };
-
-  // Fire notification for new messages
+  // Fire service worker notification for new messages
   useEffect(() => {
     if (!firstSnapshotDoneRef.current) return;
     const newMsgs = messages.filter((m) => !seenIdsRef.current.has(m.id));
     if (newMsgs.length === 0) return;
     newMsgs.forEach((m) => seenIdsRef.current.add(m.id));
     const latest = newMsgs[newMsgs.length - 1];
-    if (Notification.permission === "granted") {
-      const n = new Notification("The Pit 💬", {
-        body: latest.text,
-        icon: "/favicon.ico",
-        tag: "the-pit",
-      });
-      n.onclick = () => { window.focus(); n.close(); };
-    }
+    notify("The Pit 💬", latest.text);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 

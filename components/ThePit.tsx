@@ -13,6 +13,7 @@ import {
   DataSnapshot,
 } from "firebase/database";
 import { MessageSquare, Send, Zap, X, Bell, BellOff } from "lucide-react";
+import { usePitNotifications } from "@/lib/usePitNotifications";
 
 interface Message {
   id: string;
@@ -21,17 +22,9 @@ interface Message {
   accent: string;
 }
 
-const MESSAGE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+const MESSAGE_TTL_MS = 5 * 60 * 1000;
 
-const ACCENTS = [
-  "#16a34a",
-  "#0d9488",
-  "#2563eb",
-  "#7c3aed",
-  "#db2777",
-  "#ea580c",
-  "#ca8a04",
-];
+const ACCENTS = ["#16a34a","#0d9488","#2563eb","#7c3aed","#db2877","#ea580c","#ca8a04"];
 
 function randomAccent(): string {
   return ACCENTS[Math.floor(Math.random() * ACCENTS.length)];
@@ -52,60 +45,26 @@ export default function ThePit() {
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesRef = ref(db, "pit/messages");
 
-  // ── Notification refs ────────────────────────────────────────────────────
   const seenIdsRef = useRef<Set<string>>(new Set());
-  const firstSnapshotDoneRef = useRef(false); // set to true after first Firebase snapshot
+  const firstSnapshotDoneRef = useRef(false);
   const autoCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const manualOpenRef = useRef(false);
   const openRef = useRef(open);
   useEffect(() => { openRef.current = open; }, [open]);
 
-  const [notifPermission, setNotifPermission] = useState<NotificationPermission | null>(null);
+  const { permission: notifPermission, requestPermission: requestNotifPermission, notify } = usePitNotifications();
 
+  // Watch for new messages → service worker notification + auto-open
   useEffect(() => {
-    if (typeof window !== "undefined" && "Notification" in window) {
-      setNotifPermission(Notification.permission);
-      if (Notification.permission === "default") {
-        Notification.requestPermission().then(setNotifPermission);
-      }
-    }
-  }, []);
-
-  const requestNotifPermission = async () => {
-    if (!("Notification" in window)) return;
-    const result = await Notification.requestPermission();
-    setNotifPermission(result);
-  };
-
-  // Watch for new messages → browser notification + auto-open
-  // NOTE: seenIdsRef is populated inside the Firebase onValue handler (below)
-  // so by the time this effect runs for real updates, initial messages are already marked seen.
-  useEffect(() => {
-    if (!firstSnapshotDoneRef.current) return; // wait until initial snapshot processed
+    if (!firstSnapshotDoneRef.current) return;
 
     const newMsgs = messages.filter((m) => !seenIdsRef.current.has(m.id));
     if (newMsgs.length === 0) return;
     newMsgs.forEach((m) => seenIdsRef.current.add(m.id));
 
     const latest = newMsgs[newMsgs.length - 1];
+    notify("The Pit 💬", latest.text);
 
-    // ── Browser notification (fires even on a different Chrome tab) ──────
-    if (Notification.permission === "granted") {
-      const n = new Notification("The Pit 💬", {
-        body: latest.text,
-        icon: "/favicon.ico",
-        tag: "the-pit",
-        silent: false,
-      });
-      n.onclick = () => {
-        window.focus();
-        manualOpenRef.current = true;
-        setOpen(true);
-        n.close();
-      };
-    }
-
-    // ── Auto-open pit for 10s if closed (same-tab awareness) ────────────
     if (!openRef.current) {
       manualOpenRef.current = false;
       setOpen(true);
@@ -118,86 +77,57 @@ export default function ThePit() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
-  // Delete messages older than TTL
   const pruneOldMessages = useCallback(async (snapshot: DataSnapshot) => {
     const now = Date.now();
     const toDelete: string[] = [];
-
     snapshot.forEach((child) => {
       const data = child.val();
       if (data?.timestamp && now - data.timestamp > MESSAGE_TTL_MS) {
         toDelete.push(child.key as string);
       }
     });
-
-    await Promise.all(
-      toDelete.map((key) => remove(ref(db, `pit/messages/${key}`)))
-    );
+    await Promise.all(toDelete.map((key) => remove(ref(db, `pit/messages/${key}`))));
   }, []);
 
   useEffect(() => {
     const q = query(messagesRef, orderByChild("timestamp"));
-
     onValue(q, (snapshot) => {
       pruneOldMessages(snapshot);
-
       const msgs: Message[] = [];
       snapshot.forEach((child) => {
         const data = child.val();
-        const now = Date.now();
-        if (data?.timestamp && now - data.timestamp <= MESSAGE_TTL_MS) {
+        if (data?.timestamp && Date.now() - data.timestamp <= MESSAGE_TTL_MS) {
           msgs.push({ id: child.key as string, ...data });
         }
       });
-
-      // First snapshot: mark all existing messages as seen so we don't notify for them
       if (!firstSnapshotDoneRef.current) {
         msgs.forEach((m) => seenIdsRef.current.add(m.id));
         firstSnapshotDoneRef.current = true;
       }
-
       setMessages(msgs);
     });
-
-    // Periodic prune every 30s
     const pruneInterval = setInterval(() => {
       onValue(q, pruneOldMessages, { onlyOnce: true });
     }, 30_000);
-
-    return () => {
-      off(q);
-      clearInterval(pruneInterval);
-    };
+    return () => { off(q); clearInterval(pruneInterval); };
   }, [pruneOldMessages]);
 
-  // Auto-scroll to bottom
   useEffect(() => {
-    if (open) {
-      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
+    if (open) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, open]);
 
-  // Focus input when opened
   useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 100);
-    }
+    if (open) setTimeout(() => inputRef.current?.focus(), 100);
   }, [open]);
 
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const text = input.trim();
     if (!text || sending) return;
-
     setSending(true);
     setInput("");
-
     try {
-      await push(messagesRef, {
-        text,
-        timestamp: Date.now(),
-        accent: randomAccent(),
-      });
+      await push(messagesRef, { text, timestamp: Date.now(), accent: randomAccent() });
     } catch (err) {
       console.error("Failed to send message:", err);
     } finally {
@@ -211,7 +141,7 @@ export default function ThePit() {
       {/* Floating toggle button */}
       <button
         onClick={() => {
-          if (!open) manualOpenRef.current = true; // prevent auto-close if user opens manually
+          if (!open) manualOpenRef.current = true;
           if (autoCloseTimerRef.current) { clearTimeout(autoCloseTimerRef.current); autoCloseTimerRef.current = null; }
           setOpen(!open);
         }}
@@ -247,24 +177,16 @@ export default function ThePit() {
       >
         <div
           className="bg-white rounded-2xl overflow-hidden flex flex-col"
-          style={{
-            boxShadow: "0 0 0 1px rgba(0,0,0,0.06), 0 20px 60px rgba(0,0,0,0.12)",
-            height: "440px",
-          }}
+          style={{ boxShadow: "0 0 0 1px rgba(0,0,0,0.06), 0 20px 60px rgba(0,0,0,0.12)", height: "440px" }}
         >
           {/* Header */}
           <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ background: "#f0fdf4" }}
-              >
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "#f0fdf4" }}>
                 <MessageSquare className="w-4 h-4 text-[#16a34a]" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-[#0f172a]">
-                  The Pit
-                </h3>
+                <h3 className="text-sm font-semibold text-[#0f172a]">The Pit</h3>
                 <p className="text-xs text-slate-400">Anonymous · Ephemeral</p>
               </div>
             </div>
@@ -272,7 +194,7 @@ export default function ThePit() {
               {notifPermission !== null && notifPermission !== "granted" && (
                 <button
                   onClick={requestNotifPermission}
-                  title="Enable notifications"
+                  title={notifPermission === "denied" ? "Blocked in browser settings" : "Enable notifications"}
                   className="flex items-center gap-1 text-[10px] px-2 py-1 rounded-lg text-amber-600 hover:bg-amber-50 transition-colors"
                 >
                   {notifPermission === "denied" ? <BellOff className="w-3 h-3" /> : <Bell className="w-3 h-3" />}
@@ -300,16 +222,11 @@ export default function ThePit() {
                 <div key={msg.id} className="group flex flex-col gap-0.5">
                   <div
                     className="inline-block max-w-full px-3 py-2 rounded-xl text-sm text-[#0f172a] break-words"
-                    style={{
-                      background: `${msg.accent}08`,
-                      borderLeft: `3px solid ${msg.accent}`,
-                    }}
+                    style={{ background: `${msg.accent}08`, borderLeft: `3px solid ${msg.accent}` }}
                   >
                     {msg.text}
                   </div>
-                  <span className="text-[10px] text-slate-300 pl-1">
-                    {timeAgo(msg.timestamp)}
-                  </span>
+                  <span className="text-[10px] text-slate-300 pl-1">{timeAgo(msg.timestamp)}</span>
                 </div>
               ))
             )}
@@ -332,9 +249,7 @@ export default function ThePit() {
                 type="submit"
                 disabled={!input.trim() || sending}
                 className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
-                style={{
-                  background: "linear-gradient(135deg, #16a34a, #15803d)",
-                }}
+                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
               >
                 <Send className="w-3.5 h-3.5 text-white" />
               </button>
