@@ -36,7 +36,6 @@ export function usePitNotifications() {
         body,
         icon: "/bodhi.png",
         tag: "the-pit",
-        renotify: true,
       });
     } else {
       // Fallback
