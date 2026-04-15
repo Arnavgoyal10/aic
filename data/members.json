@@ -6,6 +6,18 @@
     "image": "/members/Aadhya_Rajesh_Shetty.jpg"
   },
   {
+    "id": "aadi-harish-chintawar",
+    "name": "Aadi Harish Chintawar",
+    "email": "aadi.chintawar_ug25@ashoka.edu.in",
+    "image": "/members/Aadi_Harish_Chintawar.jpg"
+  },
+  {
+    "id": "aadya-jeloka",
+    "name": "Aadya Jeloka",
+    "email": "aadya.jeloka_ug2023@ashoka.edu.in",
+    "image": "/members/Aadya_Jeloka.jpg"
+  },
+  {
     "id": "aahan-desai",
     "name": "Aahan Desai",
     "email": "aahan.desai_ug2025@ashoka.edu.in",
@@ -96,6 +108,12 @@
     "image": "/members/Avi_Dhall.jpeg"
   },
   {
+    "id": "avi-nalin",
+    "name": "Avi Nalin",
+    "email": "avi.nalin_ug25@ashoka.edu.in",
+    "image": "/members/Avi_Nalin.jpg"
+  },
+  {
     "id": "avika-kapur",
     "name": "Avika Kapur",
     "email": "avika.kapur_ug2024@ashoka.edu.in",
@@ -180,6 +198,12 @@
     "image": "/members/Krtya_Sunil.jpeg"
   },
   {
+    "id": "kush-jignesh-modi",
+    "name": "Kush Jignesh Modi",
+    "email": "kush.modi_ug2023@ashoka.edu.in",
+    "image": "/members/Kush_Jignesh_Modi.jpg"
+  },
+  {
     "id": "kushal-alok-khetan",
     "name": "Kushal Alok Khetan",
     "email": "kushal.khetan_ug2025@ashoka.edu.in",
@@ -202,6 +226,12 @@
     "name": "Mahir Shah",
     "email": "mahir.shah_ug25@ashoka.edu.in",
     "image": "/members/Mahir_Parimal_Shah.jpg"
+  },
+  {
+    "id": "malhar-premal-sanghavi",
+    "name": "Malhar Premal Sanghavi",
+    "email": "malhar.sanghavi_ug25@ashoka.edu.in",
+    "image": "/members/Malhar_Premal_Sanghavi.jpg"
   },
   {
     "id": "mishti",
@@ -310,6 +340,12 @@
     "name": "Shriyansh Dalmia",
     "email": "shriyansh.dalmia_ug2023@ashoka.edu.in",
     "image": "/members/Shriyansh_Dalmia.jpg"
+  },
+  {
+    "id": "soham-ramesh-dengra",
+    "name": "Soham Ramesh Dengra",
+    "email": "soham.dengra_ug2023@ashoka.edu.in",
+    "image": "/members/Soham_Ramesh_Dengra.jpg"
   },
   {
     "id": "srishti-singhi",

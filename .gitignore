@@ -42,3 +42,7 @@ scripts/*.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+scripts/create_firebase_users.py
+
+aicbodhi-firebase-adminsdk-fbsvc-546a1f516e.json
